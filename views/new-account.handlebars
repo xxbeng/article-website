@@ -1,0 +1,45 @@
+<div>
+
+    {{! Display a message if one was provided. }}
+    {{#if toastMessage}}
+    <p>{{toastMessage}}</p>
+    {{/if}}
+
+    <h1>New Account</h1>
+    <form action="./newAccount" method="POST">
+        <div>
+            <label for="txtUsername">Username:</label>
+            <input type="text" name="username" id="txtUsername" required>
+        </div>
+
+        <div>
+            <label for="txtPassword">Password:</label>
+            <input type="password" name="password" id="txtPassword" required>
+        </div>
+
+        <div>
+            <label for="txtFirstName">First Name:</label>
+            <input type="text" name="fname" id="txtFirstName" required>
+        </div>
+
+        <div>
+            <label for="txtLastName">Last Name:</label>
+            <input type="text" name="lname" id="txtLastName" required>
+        </div>
+
+        <div>
+            <label for="dateBirthdate">Date of Birth:</label>
+            <input type="date" name="dateOfBirth" id="dateBirthdate" required>
+        </div>
+
+        <div>
+            <label for="txtDescription">Brief description of yourself:</label>
+            <textarea type="text" name="description" id="txtDescription" required>enter description here</textarea>
+        </div>
+
+        <div>
+            <button type="submit">Create account</button>
+        </div>
+    </form>
+
+</div>
