@@ -18,10 +18,70 @@ const dbPromise = require("./database.js");
     user.id = result.lastID;
 }
 
+/**
+ * Gets the user with the given username from the database.
+ * If there is no such user, undefined will be returned.
+ * 
+ * @param {string} username the user's username
+ */
+ async function retrieveUserByUsername(username) {
+    const db = await dbPromise;
 
+    const user = await db.get(SQL`
+        select * from users
+        where username = ${username}`);
+
+    return user;
+}
+
+/**
+ * Updates the given user in the database, not including auth token
+ * 
+ * @param user the user to update
+ */
+ async function updateUser(user) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        update users
+        set username = ${user.username}, password = ${user.password},
+            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}, authToken = ${user.authToken}
+        where id = ${user.id}`);
+}
+
+/**
+ * Gets an array of all users from the database.
+ */
+ async function retrieveAllUsers() {
+    const db = await dbPromise;
+
+    const users = await db.all(SQL`select * from users`);
+
+    return users;
+}
+
+/**
+ * Gets the user with the given authToken from the database.
+ * If there is no such user, undefined will be returned.
+ * 
+ * @param {string} authToken the user's authentication token
+ */
+ async function retrieveUserWithAuthToken(authToken) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        select * from users
+        where authToken = ${authToken}`);
+
+    return user;
+}
 
 // Export functions.
 module.exports = {
-    createUser
+    createUser,
+    retrieveUserByUsername,
+    updateUser,
+    retrieveAllUsers,
+    retrieveUserWithAuthToken,
 };
 
