@@ -60,6 +60,14 @@ const dbPromise = require("./database.js");
     return users;
 }
 
+async function retrieveAllUsernames() {
+    const db = await dbPromise;
+
+    const usernames = await db.all(SQL`select username from users`);
+    
+    return usernames;
+}
+
 /**
  * Gets the user with the given authToken from the database.
  * If there is no such user, undefined will be returned.
@@ -83,5 +91,6 @@ module.exports = {
     updateUser,
     retrieveAllUsers,
     retrieveUserWithAuthToken,
+    retrieveAllUsernames
 };
 

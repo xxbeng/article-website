@@ -6,20 +6,6 @@ const saltRounds = 10;
 // require users-dao
 const userDao = require("../modules/users-dao.js");
 
-// Whenever we navigate to /login, if we're already logged in, redirect to "/".
-// Otherwise, render the "login" view.
-router.get("/login", function (req, res) {
-
-    if (res.locals.user) {
-        res.redirect("/");
-    }
-
-    else {
-        res.render("login");
-    }
-
-});
-
 // Account creation
 router.get("/newAccount", function (req, res) {
     res.render("new-account");
@@ -53,6 +39,13 @@ router.post("/newAccount", async function (req, res) {
 
 });
 
+//sent to client side all usernames in database
+router.get("/getAllUsernames", async function (req, res) {
+    const allUsernames = await userDao.retrieveAllUsernames();
+    console.log(allUsernames);
+    res.json(allUsernames);
+})
+
 // Whenever we navigate to /login, if we're already logged in, redirect to "/".
 // Otherwise, render the "login" view.
 router.get("/login", function (req, res) {
@@ -66,6 +59,8 @@ router.get("/login", function (req, res) {
     }
 
 });
+
+
 
 // Whenever we POST to /login, check the username and password submitted by the user.
 // If they match a user in the database, give that user an authToken, save the authToken
