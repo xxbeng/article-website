@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/jinky/Documents/COMPSCI719/Final project/project-group-charcoal-caterpillars/project-database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1226"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainusers"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">-- drop table if exists test;
+drop table if exists users;
+
+/* create table test (
+    id integer not null primary key,
+    stuff text  
+);
+
+insert into test (stuff) values
+    ('Things'),
+    ('More things');
+*/
+
+-- create user table
+create table users (
+    id integer not null primary key,
+-- username is unique
+    username varchar(64) unique not null,
+    password varchar(64) not null,
+    fname varchar(64),
+	lname varchar(64),
+	dateOfBirth DATE,
+	description varchar(500),
+    authToken varchar(128)
+);
+
+insert into users (id, username, password,fname, lname,dateOfBirth, description,authToken) values
+    ('1', 'haha', '123','j', 'x','15.06.2022','test1','i ama token');
+
+SELECT*
+from users;
+
+UPDATE users
+SET username = 'Toronto',
+    fname = 'HT'
+WHERE
+    id = 1;</sql><current_tab id="0"/></tab_sql></sqlb_project>

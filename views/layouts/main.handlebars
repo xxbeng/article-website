@@ -8,10 +8,29 @@
     {{else}}
     <title>Default title.</title>
     {{/if}}
+    <link rel="stylesheet" href="./css/site.css">
 </head>
 
 <body>
-    {{{body}}}
+
+    <div class = "container">
+        <div class="topnav">
+            <a href="./">Home</a>
+            <a href="#myArticle">My Article</a></li>  {{!-- for article browser --}}
+            <a class="{{#if about}} active{{/if}}" href="#myProfile">My profile</a>
+
+        </div>
+
+
+
+
+
+
+        {{{body}}}
+
+    </div>
+
+    
 </body>
 
 </html>
