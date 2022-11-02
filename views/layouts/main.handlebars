@@ -9,34 +9,48 @@
     <title>Default title.</title>
     {{/if}}
 
-    <link rel="stylesheet" href="./css/az-site.css">
 
-    <script src="https://cdn.tiny.cloud/1/sckm5o71dc31gq0xswts5ol39j26jqeok9lc5efsmjuo8lza/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/sckm5o71dc31gq0xswts5ol39j26jqeok9lc5efsmjuo8lza/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
+
+
+    <link rel="stylesheet" href="./css/site.css">
 </head>
 
 <body>
-    <div class="header">
-        <h1>Gotta come up with a cool header</h1>
-    </div>
 
-    <div class="topnav">
-        <a href="./" class="{{#if homePage}} active{{/if}}">Home</a>
+    <div class="header">
+          <h1>Gotta come up with a cool header</h1>
+     </div>
+
+    <div class = "container">
+        <div class="topnav">
+            <a href="./" class="{{#if homePage}} active{{/if}}">Home</a>
             {{#if user}}
             <a href="./myProfile" class="{{#if profilePage}} active{{/if}}">My Profile</a>
             <a href="./newArticle" class="{{#if newArticlePage}} active{{/if}}">Create Article</a>
-                <div class="topnav-right">
-                <a href="#" class="{{#if accountPage}} active{{/if}}">My Account</a>            
-                <a href="./logout">Log Out</a>
+            <div class="topnav-right">
+            <a href="####" class="{{#if accountPage}} active{{/if}}">My Account</a> 
+            <a href="./logout">Log Out</a>
             {{else}}
-                <div class="topnav-right">
-                <a href="./newAccount">Register</a>
-                <a href="./login">Log In</a>
+                 <div class="topnav-right">
+                 <a href="./newAccount">Register</a>
+                 <a href="./login">Log In</a>
             {{/if}}
         </div>
+     </div>
+
+
+
+
+
+
+        {{{body}}}
+
     </div>
 
-    {{{body}}}
+    
+
 </body>
 
 </html>
