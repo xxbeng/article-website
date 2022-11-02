@@ -76,6 +76,36 @@ const dbPromise = require("./database.js");
     return user;
 }
 
+/**
+ * Updates password with given user,
+ * 
+ * @param user the user to update
+ */
+ async function updatePassword(user) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        update users
+        set password = ${user.password}
+        where id = ${user.id}`);
+}
+
+
+/**
+ * Updates the given user in the database, not including auth token
+ * 
+ * @param user the user to update
+ */
+ async function updateUserInfomation(user) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        update users
+        set username = ${user.username}, 
+            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}
+        where id = ${user.id}`);
+}
+
 // Export functions.
 module.exports = {
     createUser,
@@ -83,5 +113,7 @@ module.exports = {
     updateUser,
     retrieveAllUsers,
     retrieveUserWithAuthToken,
+    updatePassword,
+    updateUserInfomation,
 };
 
