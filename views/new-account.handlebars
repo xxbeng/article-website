@@ -1,5 +1,8 @@
 <div>
 
+    {{! reference the client side js }}
+    <script src="../client.js"></script>
+
     {{! Display a message if one was provided. }}
     {{#if toastMessage}}
     <p>{{toastMessage}}</p>
@@ -10,11 +13,18 @@
         <div>
             <label for="txtUsername">Username:</label>
             <input type="text" name="username" id="txtUsername" required>
+            <p id="unique-user-note"></p>
         </div>
 
         <div>
-            <label for="txtPassword">Password:</label>
+            <label for="txtPassword">New Password:</label>
             <input type="password" name="password" id="txtPassword" required>
+        </div>
+
+        <div>
+            <label for="txtRePassword">Re-enter Password:</label>
+            <input type="password" name="Repassword" id="txtRePassword" required>
+            <p id="password-check-note"></p>
         </div>
 
         <div>
@@ -38,7 +48,21 @@
         </div>
 
         <div>
-            <button type="submit">Create account</button>
+            <p>Choose your profile photo:</p> 
+            <img id="profileImg" src="../avatar/avatar-default.png">
+            <div id="avtarGallery">
+                <img class="avatar" src="../avatar/avatar1.png">
+                <img class="avatar" src="../avatar/avatar2.png">
+                <img class="avatar" src="../avatar/avatar3.png">
+                <img class="avatar" src="../avatar/avatar4.png">
+                <img class="avatar" src="../avatar/avatar5.png">
+                <img class="avatar" src="../avatar/avatar6.png">
+            </div>
+            
+        </div>
+
+        <div>
+            <button id= "submitButton" type="submit">Create account</button>
         </div>
     </form>
 
