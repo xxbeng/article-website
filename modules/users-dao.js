@@ -89,13 +89,13 @@ async function retrieveAllUsernames() {
  * 
  * @param user the user to update
  */
- async function updatePassword(user) {
+ async function updatePassword(newPassword,id) {
     const db = await dbPromise;
 
     await db.run(SQL`
         update users
-        set password = ${user.password}
-        where id = ${user.id}`);
+        set password = ${newPassword}
+        where id = ${id}`);
 }
 
 
@@ -104,7 +104,8 @@ async function retrieveAllUsernames() {
  * 
  * @param user the user to update
  */
- async function updateUserInfomation(user,id) {
+
+ async function updateUserInformation(user,id) {
     const db = await dbPromise;
 
     await db.run(SQL`
@@ -114,6 +115,19 @@ async function retrieveAllUsernames() {
         where id = ${id}`);
 }
 
+/**
+ * delete userinfo from user id
+ */
+ async function deleteUser(id) {
+    const db = await dbPromise;
+
+    await db.run (
+        SQL`delete from users
+        where id = ${id}`
+    );
+}
+
+
 // Export functions.
 module.exports = {
     createUser,
@@ -122,7 +136,8 @@ module.exports = {
     retrieveAllUsers,
     retrieveUserWithAuthToken,
     updatePassword,
-    updateUserInfomation,
-    retrieveAllUsernames
+    updateUserInformation,
+    retrieveAllUsernames,
+    deleteUser,
 };
 

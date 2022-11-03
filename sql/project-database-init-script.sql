@@ -10,15 +10,6 @@ drop table if exists comments;
 drop table if exists articles;
 drop table if exists users;
 
-/* create table test (
-    id integer not null primary key,
-    stuff text  
-);
-
-insert into test (stuff) values
-    ('Things'),
-    ('More things');
-*/
 
 -- create user table
 create table users (
@@ -58,3 +49,17 @@ create TABLE cToC (
 	FOREIGN KEY (cSenderId) REFERENCES comments (id)
 );
 
+
+
+
+-- create articles table
+create table articles (
+	id INTEGER not null primary key AUTOINCREMENT,
+	title varchar(64) not null,
+	content text not null,
+	timestamp timestamp default CURRENT_TIMESTAMP,
+	userId INTEGER not null,
+	foreign key (userId) REFERENCES users (id)
+    ON UPDATE CASCADE -- to ensure articles delete when parent foreign key gets deleted
+    ON DELETE CASCADE
+);

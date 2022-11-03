@@ -19,23 +19,20 @@
 
 <body>
 
-    <div class="header">
-          <h1>Gotta come up with a cool header</h1>
-     </div>
-
-    <div class = "container">
+    <div>
+        <div class="header">
+            <h1>My Blog</h1>
+        </div>
         <div class="topnav">
             <a href="./" class="{{#if homePage}} active{{/if}}">Home</a>
             {{#if user}}
             <a href="./myProfile" class="{{#if profilePage}} active{{/if}}">My Profile</a>
             <a href="./newArticle" class="{{#if newArticlePage}} active{{/if}}">Create Article</a>
-            <div class="topnav-right">
-            <a href="####" class="{{#if accountPage}} active{{/if}}">My Account</a> 
-            <a href="./logout">Log Out</a>
+            <a href="./myDetail" class="{{#if accountPage}} active{{/if}}" style="float:right">My Detail</a> 
+            <a href="./logout" style="float:right">Log Out</a>
             {{else}}
-                 <div class="topnav-right">
-                 <a href="./newAccount">Register</a>
-                 <a href="./login">Log In</a>
+                 <a href="./newAccount" style="float:right">Register</a>
+                 <a href="./login" style="float:right">Log In</a>
             {{/if}}
         </div>
      </div>
