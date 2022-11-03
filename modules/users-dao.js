@@ -104,6 +104,7 @@ async function retrieveAllUsernames() {
  * 
  * @param user the user to update
  */
+
  async function updateUserInformation(user,id) {
     const db = await dbPromise;
 
