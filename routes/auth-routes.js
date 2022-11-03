@@ -3,8 +3,11 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-// require users-dao
+// require users-dao and articles-dao
 const userDao = require("../modules/users-dao.js");
+const articlesDao = require("../modules/articles-dao.js");
+// require middleware
+const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-middleware.js");
 
 // Account creation
 router.get("/newAccount", function (req, res) {
@@ -73,14 +76,14 @@ router.post("/login", async function (req, res) {
 
     // Get user from database by username input 
     const user = await userDao.retrieveUserByUsername(username);
-
+    console.log(user);
     // If no user exists
-    if (!user) {
+    if (user == undefined) {
         res.locals.user = null;
         res.setToastMessage("User does not exist!");
         res.redirect("./login");
     }
-
+    else{
     // Compare input password and hashed password
     const isvalid = await bcrypt.compareSync(userPassword, user.password); 
 
@@ -101,7 +104,7 @@ router.post("/login", async function (req, res) {
         res.locals.user = null;
         res.setToastMessage("Authentication failed!");
         res.redirect("./login");
-    }
+    }}
 });
 
 // Whenever we navigate to /logout, delete the authToken cookie.
@@ -113,7 +116,78 @@ router.get("/logout", function (req, res) {
     res.redirect("./login");
 });
 
+// navigate to update personal information page, add user info to input value using'addUserToLocals'
+router.get("/updateAccount",addUserToLocals, function(req, res){
+  
+    res.render("update");
+});
 
+//  updated info from update form and update to database
+router.post("/updateAccount", async function (req,res){
+    
+    const userInfo = res.locals.user;
 
+    //save new input in array
+    const newUserInfo = {
+        username: req.body.username,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        dateOfBirth: req.body.dateOfBirth,
+        description: req.body.description,
+    };
+        //update data base with new info and its original id
+        await userDao.updateUserInformation(newUserInfo, userInfo.id);
+        res.setToastMessage("Your personal information is updated!"); 
+        res.redirect("/myDetail"); //direct to my detail
+
+});
+
+//navigate to updatepassword page
+router.get("/updatePassword", function(req, res){
+  
+    res.render("update-password");
+
+});
+
+// password update
+router.post("/updatePassword", async function(req, res){
+  
+    const userInfo = res.locals.user;
+    const plainpassword = req.body.password;
+    const re_enter = req.body.rePassword;
+
+    //verify password
+    if (plainpassword != re_enter){
+        res.setToastMessage("password and re-enter password do not match, please enter again!");
+        res.redirect("./updatePassword"); //direct to update password
+    }
+    
+    //hash password and update to database
+    else{
+        const password = bcrypt.hashSync(plainpassword, saltRounds);
+        await userDao.updatePassword(password, userInfo.id);
+        res.setToastMessage("Password is updated!");
+        res.redirect("./myDetail"); //direct to my detail
+    }
+
+});
+
+// navigate to my details page
+router.get("/myDetail", addUserToLocals, function(req, res){
+  
+    res.render("my-detail");
+
+});
+
+// delete account and related articles
+router.get("/deleteAccount", async function(req, res){
+  
+    const userInfo = res.locals.user;
+    // await articlesDao.deleteArticle(userInfo.id); //delete all articles relate to user
+    await userDao.deleteUser(userInfo.id); //delete user from database
+
+    res.redirect("/");
+
+});
 
 module.exports = router;
