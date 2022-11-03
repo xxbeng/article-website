@@ -104,14 +104,14 @@ async function retrieveAllUsernames() {
  * 
  * @param user the user to update
  */
- async function updateUserInfomation(user) {
+ async function updateUserInfomation(user,id) {
     const db = await dbPromise;
 
     await db.run(SQL`
         update users
         set username = ${user.username}, 
             fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}
-        where id = ${user.id}`);
+        where id = ${id}`);
 }
 
 // Export functions.
