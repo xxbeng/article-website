@@ -1,54 +1,53 @@
 <div class="content-container">
 
-    {{! Display a message if one was provided. }}
-    {{#if toastMessage}}
-    <p>{{toastMessage}}</p>
-    {{/if}}
+    <div class="auth-container">
+        {{! Display a message if one was provided. }}
+        {{#if toastMessage}}
+        <p>{{toastMessage}}</p>
+        {{/if}}
 
-    <div class="page-header">
-        <h1>My Account Detail!</h1>
+        <h1 class="auth-title">My Account Detail</h1>
+        
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <td>{{user.fname}}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{user.lname}}</td>
+                </tr>
+                <tr>
+                    <th>Date of Birth</th>
+                    <td>{{user.dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <th>Brief description of myself:</th>
+                    <td>{{user.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form action="./updateAccount" method="GET">
+                <button type="submit">Update My Detail</button>
+        </form>
+
+        <form action="./updatePassword" method="GET">
+                <button type="submit">Update My Password</button>
+        </form>
+
+        
+        
+        <div> Want to delete your account?
+            <a href="./deleteAccount"> <em><u>Delete here.</u></em></a>
+        </div>
+
     </div>
-
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th>Username</th>
-                <td>{{user.username}}</td>
-            </tr>
-            <tr>
-                <th>First Name</th>
-                <td>{{user.fname}}</td>
-            </tr>
-            <tr>
-                <th>Last Name</th>
-                <td>{{user.lname}}</td>
-            </tr>
-            <tr>
-                <th>Date of Birth</th>
-                <td>{{user.dateOfBirth}}</td>
-            </tr>
-            <tr>
-                <th>Brief description of yourself:</th>
-                <td>{{user.description}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <form>
-        <div class="flex-row justify-sb align-center">
-            <a href="./updateAccount">Update Profile</a>
-        </div>
-    </form>
-    <form>
-        <div class="flex-row justify-sb align-center">
-            <a href="./updatePassword">Update Password</a>
-        </div>
-    </form>
-    <form>
-        <div class="flex-row justify-sb align-center">
-            <a href="./deleteAccount">Delete My Account</a>
-        </div>
-    </form>
 </div>
 
 

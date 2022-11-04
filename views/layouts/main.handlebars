@@ -8,8 +8,14 @@
     {{else}}
     <title>Default title.</title>
     {{/if}}
+ 
+    {{! import font style}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap" rel="stylesheet">
+    {{! reference the client side js }}
+    <script src="../client.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Edu+VIC+WA+NT+Beginner&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/site.css">
 </head>
 
@@ -20,16 +26,22 @@
             <h1>PHOTOGRAPH AND DESIGN</h1>
         </div>
         <div class="topnav sticky" id="navbar">
+            <class="navbar-links">
             <a href="./" class="{{#if homePage}} active{{/if}}">Home</a>
-            {{#if user}}
-            <a href="./myProfile" class="{{#if profilePage}} active{{/if}}">My Profile</a>
-            <a href="./newArticle" class="{{#if newArticlePage}} active{{/if}}">Create Article</a>
-            <a href="./myDetail" class="{{#if accountPage}} active{{/if}}">My Detail</a> 
-            <a href="./logout" style="float:right">Log Out</a>
-            {{else}}
-                 <a href="./newAccount" style="float:right">Register</a>
-                 <a href="./login" style="float:right">Log In</a>
-            {{/if}}
+
+                {{#if user}}
+                
+                <a href="./myProfile" class="{{#if profilePage}} active{{/if}}">My Profile</a>
+                <a href="./newArticle" class="{{#if newArticlePage}} active{{/if}}">Create Article</a>
+                <a href="./myDetail" class="{{#if myDetailPage}} active{{/if}}">My Detail</a> 
+                <a href="./logout" style="float:right">Log Out</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+                {{else}}
+                    <a href="./login" style="float:right">Log In</a>
+                {{/if}}
         </div>
         
      </div>

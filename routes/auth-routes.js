@@ -141,7 +141,7 @@ router.post("/updateAccount", async function (req,res){
     };
         //update data base with new info and its original id
         await userDao.updateUserInformation(newUserInfo, userInfo.id);
-        res.setToastMessage("Your personal information is updated!"); 
+        res.setToastMessage("Your personal information has been updated!"); 
         res.redirect("/myDetail"); //direct to my detail
 
 });
@@ -163,7 +163,7 @@ router.post("/updatePassword", async function(req, res){
 
     //verify password
     if (plainpassword != re_enter){
-        res.setToastMessage("password and re-enter password do not match, please enter again!");
+        res.setToastMessage("Password and re-enter password do not match, please enter again!");
         res.redirect("./updatePassword"); //direct to update password
     }
     
@@ -180,6 +180,7 @@ router.post("/updatePassword", async function(req, res){
 // navigate to my details page
 router.get("/myDetail", addUserToLocals, function(req, res){
 
+    res.locals.myDetailPage = true;
     res.locals.title = 'My Detail';
     res.render("my-detail");
 
