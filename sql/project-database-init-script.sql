@@ -4,11 +4,11 @@
  * required.
  */
 
--- drop table if exists test;
--- drop table if exists cToC;
--- drop table if exists comments;
--- drop table if exists articles;
--- drop table if exists users;
+drop table if exists test;
+drop table if exists cToC;
+drop table if exists comments;
+drop table if exists articles;
+drop table if exists users;
 
 
 -- create user table
