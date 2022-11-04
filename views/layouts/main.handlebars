@@ -9,8 +9,6 @@
     <title>Default title.</title>
     {{/if}}
 
-    <script src="https://cdn.tiny.cloud/1/sckm5o71dc31gq0xswts5ol39j26jqeok9lc5efsmjuo8lza/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    {{!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">       --}}
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Edu+VIC+WA+NT+Beginner&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/site.css">
 </head>
@@ -33,19 +31,18 @@
                  <a href="./login" style="float:right">Log In</a>
             {{/if}}
         </div>
+        
      </div>
-
-
-
-
-
 
         {{{body}}}
 
     </div>
 
     
-
+<!-- Script element sourcing TinyMCE -->
+    <script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>
+<!-- Script element sourcing the TinyMCE configuration -->
+    <script type="application/javascript" src= "/javascripts/my-tinymce-config.js"></script>
+    
 </body>
-
 </html>

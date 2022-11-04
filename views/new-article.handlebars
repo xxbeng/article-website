@@ -1,40 +1,13 @@
-<script>
-const MediumHeadlineConfig = {
-  selector: "#title",
-  skin: "snow",
-  icons: "thin",
-  menubar: false,
-  inline: true,
-  toolbar: false,
-  placeholder: "Title"
-};
-
-const MediumStoryConfig = {
-  selector: "#content",
-  plugins: "advlink advlist autolink autoresize contextmenu emotions fullpage lists media nonbreaking page break paste preview save style table tabfocus image code",
-  skin: "thin",
-  icons: "material",
-  menubar: true,
-  toolbar: 'preview | undo redo | styleselect | forecolor backcolor align bold italic | link image',
-  quickbars_selection_toolbar: "bold italic link | h1 h2 | blockquote | ",
-  images_upload_url: 'postAcceptor.php',
-  images_upload_base_path: './images/articles/',
-  images_upload_credentials: true
-};
-
-tinymce.init(MediumHeadlineConfig);
-tinymce.init(MediumStoryConfig);
-</script>
 
 <div class="content-container">
 
 <form action={{#if article}}"./edit-{{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
   <div>
-    <h1 input type="text" name="title" id="title">{{article.title}}
+    <h1><input type="text" name="title" id="title">{{article.title}}</h1> 
   </div>
 
   <div>
-    <textarea name="content" id="content">{{article.content}}</textarea>
+    <textarea id="my-expressjs-tinymce-app" name="content">{{article.content}}</textarea>
   </div>
   
  <div>
