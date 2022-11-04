@@ -3,7 +3,7 @@
 /* Fonts, misc */
 /*****************************************************************/
 * {
-    font-family: 'Cormorant SC',"Trirong", Verdana, Geneva, sans-serif;
+    font-family: 'Cormorant', serif;
     color: #706F6F;
     line-height: 23px;
 }
@@ -52,6 +52,10 @@ img {
 .code {
     font-family: Consolas, monospace;
 }
+
+.check-note {
+    font-size: 15px;
+}
 /*****************************************************************/
 
 /* Header/Blog Title */
@@ -81,9 +85,9 @@ body {
     background: #f1f1f1;
 }
 
-.container {
+/* .container {
     margin: 20px 20px;
-}
+} */
 
 .content-container {
     padding-top: 90px;
@@ -123,8 +127,8 @@ body {
     background-color: #ddd;
     color: black;
   }
-  
-  .topnav a.active {
+  /* .topnav a.active */
+  .active {
     background-color: darkolivegreen;
     color: white;
   }
@@ -133,6 +137,27 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
+  }
+
+  /* .toggle-button {
+    position: absolute;
+    top: 0.75rem;
+    right:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+  }
+
+  .toggle-button .bar{
+    height: 3px;
+    width:100%;
+    background-color: white;
+    border-radius: 10px; */
+  /* } */
+  .topnav .icon {
+    display: none;
   }
 
   /* .sticky + .content {
@@ -145,21 +170,6 @@ body {
 
 /* Cards */
 /*****************************************************************/
-/* div.card {
-    background-color: white;
-    box-shadow: 3px 3px 5px #706F6F;
-    display: flex;
-    flex-direction: column;
-}
-
-div.card .card-header {
-    width: 100%;
-}
-
-div.card .card-img {
-    display: block;
-} */
-
 .card {
     border: 1px solid lightgray;
     /* flex-direction: row; */
@@ -207,9 +217,10 @@ div.card .card-img {
 
 
   .btn-box a {
+    background-color: #313131;
     float:none;
     display: block;
-    color: #313131;
+    color: #ddd;
     /* border: 1px solid #313131; */
     text-align: center;
     padding: 8px 40px;
@@ -221,23 +232,7 @@ div.card .card-img {
     color: black;
   }
 
-/* Clear floats after the card */
-/* .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } */
 /* 
-div.card > .card-body {
-    border: 1px solid #E6E7E9;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 100%;
-} */
-
-div.card > .card-footer {
-    width: 100%;
-}
 /*****************************************************************/
 
  
@@ -252,6 +247,7 @@ div.card > .card-footer {
     text-align: left;
     padding: 5px;
     color: #231F20;
+    height: 40px;
 }
 
 .table th {
@@ -260,8 +256,8 @@ div.card > .card-footer {
 
 .table > thead {
     background-color: #d9ead3;
-    border-top: 1px solid #3AAA35;
-    border-bottom: 1px solid #3AAA35;
+    border-top: 1px solid darkolivegreen;
+    border-bottom: 1px solid darkolivegreen;
 }
 
 .table > tbody {
@@ -282,42 +278,28 @@ div.card > .card-footer {
 /*****************************************************************/
 
 
-/* Nav */
-/*****************************************************************/
-/* .nav {
-    display: flex;
-    flex-direction: row;
-    background-color: #d9ead3;
-    box-shadow: 0px 3px 5px #706F6F;
-    justify-content: flex-start;
-    align-items: baseline;
-    padding: 2px 10px;
-}
-
-.nav .nav-brand {
-    padding: 0px 10px;
-}
-
-.nav .nav-button {
-    padding: 0px 10px;
-    font-size: 20px;
-    color: #706F6F;
-    text-decoration: none;
-    border-left: 1px solid #a9baa3;
-}
-
-.nav .nav-button.active {
-    color: #231F20;
-} */
-/*****************************************************************/
-
-
 /* Forms */
 /*****************************************************************/
 form .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+}
+/*****************************************************************/
+
+
+/* container */
+/*****************************************************************/
+ .auth-container {
+    margin: 20px;
+    padding:5px;
+    width: 600px;
+    margin: auto;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 2rem;
 }
 /*****************************************************************/
 
@@ -340,44 +322,104 @@ form .form-group {
     margin: 50px 50px 50px 50px;
     border: 1px solid lightgray;
   }
-  
-  /* tinymce submit button */
+/*****************************************************************/
+
+
+/* button */
+/*****************************************************************/
   button[type=submit] {
-    background-color: #238dba;
+    background-color: #313131;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 8px 40px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+    font-size: 15px;
   }
   
   input[type=button] {
     background-color: #87898a;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 8px 40px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+    margin:100%;
+    font-size: 15px;
   }
+
+  button:hover {
+  background-color: #ddd;
+  color: black;
+}
 /*****************************************************************/
 
+/* avatar */
+/*****************************************************************/
+.avatar {
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.profile-avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding-bottom: 15px;
+}
+.select-avatar {
+    text-align: center;
+}
+/*****************************************************************/
 
 /* Responsive design */
 /*****************************************************************/
-@media screen and (min-width: 960px) {
-    .container {
-        width: 960px;
-        margin: 20px auto;
+@media screen and (max-width: 650px) {
+    .auth-container {
+        width: auto;
+    }
+    
+    /* .content-container {
+        padding: 0px;
+    } */
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .header {
+        display: none;
+    }
+
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;
     }
 }
 
-@media screen and (max-width: 400px) {
-    .topnav a {
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
       float: none;
-      width: 100%;
-      text-align: center;
+      display: block;
+      text-align: left;
     }
   }
 

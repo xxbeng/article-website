@@ -56,7 +56,13 @@ avatarImg.forEach(function(img) {
     img.addEventListener("click", function(){
         profileImg.src = img.src;
     })
-})
- 
 });
 
+//navbar dropdpwn when responsive
+
+
+
+});
+
+
+  

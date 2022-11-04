@@ -8,64 +8,69 @@
     <p>{{toastMessage}}</p>
     {{/if}}
 
-    <h1>New Account</h1>
-    <form action="./newAccount" method="POST">
-        <div class="flex-col mb">
-            <label for="txtUsername">Username:</label>
-            <input type="text" name="username" id="txtUsername" required>
-            <p id="unique-user-note"></p>
-        </div>
-
-
-        <div class="flex-col mb">
-            <label for="txtPassword">New Password:</label>
-            <input type="password" name="password" id="txtPassword" required>
-        </div>
-
-        <div class="flex-col mb">
-            <label for="txtRePassword">Re-enter Password:</label>
-            <input type="password" name="Repassword" id="txtRePassword" required>
-            <p id="password-check-note"></p>
-        </div>
-
-        <div class="flex-col mb">
-            <label for="txtFirstName">First Name:</label>
-            <input type="text" name="fname" id="txtFirstName" required>
-        </div>
-
-        <div class="flex-col mb">
-            <label for="txtLastName">Last Name:</label>
-            <input type="text" name="lname" id="txtLastName" required>
-        </div>
-
-        <div class="flex-col mb">
-            <label for="dateBirthdate">Date of Birth:</label>
-            <input type="date" name="dateOfBirth" id="dateBirthdate" required>
-        </div>
-
-        <div class="flex-col mb">
-            <label for="txtDescription">Brief description of yourself:</label>
-            <textarea type="text" name="description" id="txtDescription" required>enter description here</textarea>
-        </div>
-
-
-        <div>
-            <p>Choose your profile photo:</p> 
-            <img id="profileImg" src="../avatar/avatar-default.png">
-            <div id="avtarGallery">
-                <img class="avatar" src="../avatar/avatar1.png">
-                <img class="avatar" src="../avatar/avatar2.png">
-                <img class="avatar" src="../avatar/avatar3.png">
-                <img class="avatar" src="../avatar/avatar4.png">
-                <img class="avatar" src="../avatar/avatar5.png">
-                <img class="avatar" src="../avatar/avatar6.png">
+    <div class="auth-container">
+        <h1 class="auth-title">Create New Account</h1>
+        <form action="./newAccount" method="POST">
+            <div class="flex-col mb">
+                <label for="txtUsername">Username:</label>
+                <input type="text" name="username" id="txtUsername" required>
+                <p id="unique-user-note" class="check-note"></p>
             </div>
-            
-        </div>
 
-        <div class="flex-row justify-sb align-center">
-            <button id= "submitButton" type="submit">Create account</button>
-        </div>
-    </form>
 
+            <div class="flex-col mb">
+                <label for="txtPassword">New Password:</label>
+                <input type="password" name="password" id="txtPassword" required>
+            </div>
+
+            <div class="flex-col mb">
+                <label for="txtRePassword">Re-enter Password:</label>
+                <input type="password" name="Repassword" id="txtRePassword" required>
+                <p id="password-check-note" class="check-note"></p>
+            </div>
+
+            <div class="flex-col mb">
+                <label for="txtFirstName">First Name:</label>
+                <input type="text" name="fname" id="txtFirstName" required>
+            </div>
+
+            <div class="flex-col mb">
+                <label for="txtLastName">Last Name:</label>
+                <input type="text" name="lname" id="txtLastName" required>
+            </div>
+
+            <div class="flex-col mb">
+                <label for="dateBirthdate">Date of Birth:</label>
+                <input type="date" name="dateOfBirth" id="dateBirthdate" required>
+            </div>
+
+            <div class="flex-col mb">
+                <label for="txtDescription">Brief description of yourself:</label>
+                <textarea type="text" name="description" id="txtDescription" required>enter description here</textarea>
+            </div>
+
+
+            <div>
+                <p>Choose your profile photo:</p> 
+                <div class="select-avatar">
+                    <img id="profileImg" class="profile-avatar"src="../avatar/avatar-default.png">
+                    <br>
+                    <div id="avtarGallery">
+                        <img class="avatar" src="../avatar/avatar1.png">
+                        <img class="avatar" src="../avatar/avatar2.png">
+                        <img class="avatar" src="../avatar/avatar3.png">
+                        <img class="avatar" src="../avatar/avatar4.png">
+                        <img class="avatar" src="../avatar/avatar5.png">
+                        <img class="avatar" src="../avatar/avatar6.png">
+                    </div>
+                </div>
+                
+            </div>
+
+            <br>
+            <div class="flex-row justify-sb align-center">
+                <button id= "submitButton" type="submit">Create account</button>
+            </div>
+        </form>
+    </div>
 </div>
