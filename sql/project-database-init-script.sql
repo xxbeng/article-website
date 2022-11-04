@@ -5,10 +5,10 @@
  */
 
 -- drop table if exists test;
-drop table if exists cToC;
-drop table if exists comments;
-drop table if exists articles;
-drop table if exists users;
+-- drop table if exists cToC;
+-- drop table if exists comments;
+-- drop table if exists articles;
+-- drop table if exists users;
 
 
 -- create user table
@@ -31,6 +31,8 @@ create table articles (
 	timestamp timestamp default CURRENT_TIMESTAMP,
 	userId INTEGER not null,
 	foreign key (userId) REFERENCES users (id)
+    ON UPDATE CASCADE -- to ensure articles delete when parent foreign key gets deleted
+    ON DELETE CASCADE
 );
 
 create table comments (
@@ -38,8 +40,12 @@ create table comments (
 	content varchar(200) not null,
 	datenTime timestamp,
 	articleId integer NOT NULL, 
+	userId integer NOT NULL,
 	primary KEY(id),
-	foreign key(articleId) REFERENCES articles (id)
+	foreign key(articleId) REFERENCES articles (id),
+	foreign key(userId) REFERENCES users(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 create TABLE cToC (
@@ -47,19 +53,9 @@ create TABLE cToC (
 	cSenderId integer NOT NULL,
 	FOREIGN KEY (cReceiverId) REFERENCES comments (id),
 	FOREIGN KEY (cSenderId) REFERENCES comments (id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
-
-
 
 
 -- create articles table
-create table articles (
-	id INTEGER not null primary key AUTOINCREMENT,
-	title varchar(64) not null,
-	content text not null,
-	timestamp timestamp default CURRENT_TIMESTAMP,
-	userId INTEGER not null,
-	foreign key (userId) REFERENCES users (id)
-    ON UPDATE CASCADE -- to ensure articles delete when parent foreign key gets deleted
-    ON DELETE CASCADE
-);

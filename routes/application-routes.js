@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const upload = multer({
+    dest: "temp"
+});
+const fs = require("fs");
 
 const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-middleware.js");
 
 const articlesDao = require("../modules/articles-dao.js");
+//const { appendConstructorOption } = require("jimp/types/index.js");
 
 // Whenever we navigate to /, verify that we're authenticated. If we are, render the home view.
 router.get("/", async function (req, res) {
@@ -96,7 +102,28 @@ router.get("/delete-*", async function (req, res) {
     res.redirect("./myProfile");
 });
 
+//click to view one article in page (set up for comments)
+router.get("/article-*", async function (req, res) {
+    const url = req.originalUrl;
+    const urlArray = url.split("-");
+    const articleId = urlArray[1];
+    const article = await articlesDao.retrieveArticle(articleId);
+    res.locals.article = article;
+    console.log(res.locals.article);
+    res.render("single-article");
+});
 
+router.post("/uploadImage", upload.single("file"), function(req, res) {
+    const fileInfo = req.file;
+    const oldFileName = fileInfo.path;
+    const newFileName = `./public/images/${fileInfo.originalname}`;
+    fs.renameSync(oldFileName,newFileName);
+    const imgUrl = {
+        location: `/images/${fileInfo.originalname}`
+    };
 
+    res.json(imgUrl);
+    
+})
 
 module.exports = router;
