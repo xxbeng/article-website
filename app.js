@@ -9,6 +9,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+
 // Setup Handlebars
 const handlebars = require("express-handlebars");
 app.engine("handlebars", handlebars({
@@ -32,9 +33,14 @@ app.use(require("./middleware/toaster-middleware.js"));
 const { addUserToLocals } = require("./middleware/auth-middleware.js");
 app.use(addUserToLocals);
 
+// Setup tinymce
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
 // Setup routes
 app.use(require("./routes/application-routes.js"));
 app.use(require("./routes/auth-routes"));
+
+//setup middileware multer
 
 // Start the server running.
 app.listen(port, function () {

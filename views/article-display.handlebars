@@ -1,13 +1,9 @@
 <div class="profile-container">
-
 {{#if articles}}
     {{#each articles}}
     <div class="card">
         <div class="card-body">
-            <div class="article-edit"><a href="./edit-{{id}}">Edit</a></div> 
-            <div class="article-delete"><a href="./delete-{{id}}">Delete</a></div>
-            <h1 class="card-title">{{title}}<hr></h1>
-            <div class="card-header"><img class="card-image" src="./images/Dragonite.png"></a></div>
+            <h1 class="card-title"><a href="./article-{{id}}">{{title}}</a><hr></h1>
             <p class="card-text">{{{content}}} <br><br> {{timestamp}}</p>
         </div>
     </div>
@@ -15,6 +11,5 @@
 {{else}}
 <p>You have no articles! Go <a href="./newArticle">Create Article</a> now!</p>
 {{/if}}
-
 </div>
 
