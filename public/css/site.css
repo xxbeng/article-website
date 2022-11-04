@@ -3,17 +3,18 @@
 /* Fonts, misc */
 /*****************************************************************/
 * {
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: 'Cormorant SC',"Trirong", Verdana, Geneva, sans-serif;
     color: #706F6F;
     line-height: 23px;
 }
 
 p, pre, th, td, li {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 a {
-    color: #3AAA35;
+    color: none;
+    text-decoration: none;
 }
 
 a:visited {
@@ -57,13 +58,17 @@ img {
 /*****************************************************************/
 
 .header {
-    padding: 30px;
+    padding: 100px;
     text-align: center;
     background: white;
+    background-image: url("../images/header-img.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
   }
   
   .header h1 {
-    font-size: 50px;
+    font-size: 25px;
+    color: #f1f1f1;
 }
 /*****************************************************************/
 
@@ -73,11 +78,25 @@ img {
 body {
     margin: 0;
     padding: 0;
+    background: #f1f1f1;
 }
 
 .container {
     margin: 20px 20px;
 }
+
+.content-container {
+    padding-top: 90px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+/* add to single artile display
+/* Page content */   
+.content {
+    padding: 16px;
+}  
+
 /*****************************************************************/
 
 /* Top nav*/
@@ -86,6 +105,8 @@ body {
     overflow: hidden;
     background-color: #333;
     text-align: center;
+    position: sticky;
+    top:0px;
   }
   
   .topnav a {
@@ -95,7 +116,7 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 15px;
   }
   
   .topnav a:hover {
@@ -104,15 +125,27 @@ body {
   }
   
   .topnav a.active {
-    background-color: #04AA6D;
+    background-color: darkolivegreen;
     color: white;
   }
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  /* .sticky + .content {
+    padding-top: 60px;
+  } */
+  
+  
 /*****************************************************************/
 
 
 /* Cards */
 /*****************************************************************/
-div.card {
+/* div.card {
     background-color: white;
     box-shadow: 3px 3px 5px #706F6F;
     display: flex;
@@ -125,21 +158,89 @@ div.card .card-header {
 
 div.card .card-img {
     display: block;
-}
+} */
 
+.card {
+    border: 1px solid lightgray;
+    /* flex-direction: row; */
+    justify-content: center;
+    float: left;
+    width: 30%;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .card-image {
+    width: 50%;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    text-align: center;
+    margin: 0px 5px 5px 5px;
+  }
+
+  .card-body p {
+    text-align: center;
+  }
+
+  .card-title {
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  .card-time {
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* .card-content {
+    font-style: normal;
+  } */
+
+  .card-footer {
+    margin: 2px;
+  }
+
+
+  .btn-box a {
+    float:none;
+    display: block;
+    color: #313131;
+    /* border: 1px solid #313131; */
+    text-align: center;
+    padding: 8px 40px;
+    font-size: 15px;
+  }
+  
+  .btn-box a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+/* Clear floats after the card */
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } */
+/* 
 div.card > .card-body {
     border: 1px solid #E6E7E9;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
-}
+} */
 
 div.card > .card-footer {
     width: 100%;
 }
 /*****************************************************************/
 
-
+ 
 /* Tables */
 /*****************************************************************/
 .table {
@@ -221,6 +322,48 @@ form .form-group {
 /*****************************************************************/
 
 
+/* editor */
+/*****************************************************************/
+.article-edit, .article-delete {
+    text-align: right;
+  }
+  
+  /* tinymce editor box */
+  .new-article-container {
+    margin: auto;
+    max-width: 1000px;
+  }
+  
+  #title {
+    text-align: left;
+    color: grey;
+    margin: 50px 50px 50px 50px;
+    border: 1px solid lightgray;
+  }
+  
+  /* tinymce submit button */
+  button[type=submit] {
+    background-color: #238dba;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  input[type=button] {
+    background-color: #87898a;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+/*****************************************************************/
+
+
 /* Responsive design */
 /*****************************************************************/
 @media screen and (min-width: 960px) {
@@ -237,4 +380,18 @@ form .form-group {
       text-align: center;
     }
   }
+
+@media screen and (min-width: 900px) and (max-width: 1320px) {
+    .card {
+      width: 45%;
+      text-align: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .card {
+      width: 90%;
+      text-align: center;
+    }
+}
 /*****************************************************************/

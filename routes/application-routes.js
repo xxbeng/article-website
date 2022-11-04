@@ -17,6 +17,7 @@ router.get("/", async function (req, res) {
     const articles = await articlesDao.retrieveAllArticles();
     res.locals.articles = articles;
     res.locals.homePage = true;
+    res.locals.title = 'Home';
 
     res.render("article-display"); //home needs modification - article-display as reference maybe?
 });
@@ -29,6 +30,7 @@ router.get("/myProfile", verifyAuthenticated, async function (req, res) {
     const articles = await articlesDao.retrieveArticlesByUser(user.id);
     res.locals.articles = articles;
     res.locals.profilePage = true;
+    res.locals.title = 'My Profile';
 
     res.render("article-display");
 });
@@ -37,6 +39,7 @@ router.get("/myProfile", verifyAuthenticated, async function (req, res) {
 router.get("/newArticle", async function (req, res) {
 
     res.locals.newArticlePage = true;
+    res.locals.title = 'Create New Article';
 
     res.render("new-article");
 
@@ -67,6 +70,7 @@ router.get("/edit-*", async function (req, res) {
 
     const article = await articlesDao.retrieveArticle(articleId);
     res.locals.article = article;
+    res.locals.title = article.title;
 
     res.render("new-article");
 

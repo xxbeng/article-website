@@ -11,6 +11,7 @@ const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-mid
 
 // Account creation
 router.get("/newAccount", function (req, res) {
+    res.locals.title = 'New Account';
     res.render("new-account");
 })
 
@@ -52,6 +53,8 @@ router.get("/getAllUsernames", async function (req, res) {
 // Whenever we navigate to /login, if we're already logged in, redirect to "/".
 // Otherwise, render the "login" view.
 router.get("/login", function (req, res) {
+
+    res.locals.title = 'Log in';
 
     if (res.locals.user) {
         res.redirect("/");
@@ -118,7 +121,8 @@ router.get("/logout", function (req, res) {
 
 // navigate to update personal information page, add user info to input value using'addUserToLocals'
 router.get("/updateAccount",addUserToLocals, function(req, res){
-  
+
+    res.locals.title = 'Update Account';
     res.render("update");
 });
 
@@ -144,7 +148,8 @@ router.post("/updateAccount", async function (req,res){
 
 //navigate to updatepassword page
 router.get("/updatePassword", function(req, res){
-  
+    
+    res.locals.title = 'Update Password';
     res.render("update-password");
 
 });
@@ -174,7 +179,8 @@ router.post("/updatePassword", async function(req, res){
 
 // navigate to my details page
 router.get("/myDetail", addUserToLocals, function(req, res){
-  
+
+    res.locals.title = 'My Detail';
     res.render("my-detail");
 
 });

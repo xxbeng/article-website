@@ -59,3 +59,4 @@ avatarImg.forEach(function(img) {
 })
  
 });
+

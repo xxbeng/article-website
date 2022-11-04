@@ -24,6 +24,7 @@ create table users (
     authToken varchar(128)
 );
 
+-- create articles table
 create table articles (
 	id INTEGER not null primary key AUTOINCREMENT,
 	title varchar(64) not null,
@@ -31,8 +32,8 @@ create table articles (
 	timestamp timestamp default CURRENT_TIMESTAMP,
 	userId INTEGER not null,
 	foreign key (userId) REFERENCES users (id)
-    ON UPDATE CASCADE -- to ensure articles delete when parent foreign key gets deleted
-    ON DELETE CASCADE
+    ON UPDATE CASCADE -- to update articles when parent foreign key gets updated
+    ON DELETE CASCADE -- to delete articles when parent foreign key gets deleted
 );
 
 create table comments (
@@ -57,5 +58,3 @@ create TABLE cToC (
 	ON DELETE CASCADE
 );
 
-
--- create articles table
