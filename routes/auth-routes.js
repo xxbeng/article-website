@@ -29,7 +29,6 @@ router.post("/newAccount", async function (req, res) {
         description: req.body.description
     };
 
-    console.log(user);
 //make sure the username is unique
     try {
         await userDao.createUser(user);
@@ -46,7 +45,7 @@ router.post("/newAccount", async function (req, res) {
 //sent to client side all usernames in database
 router.get("/getAllUsernames", async function (req, res) {
     const allUsernames = await userDao.retrieveAllUsernames();
-    console.log(allUsernames);
+
     res.json(allUsernames);
 })
 
@@ -79,7 +78,7 @@ router.post("/login", async function (req, res) {
 
     // Get user from database by username input 
     const user = await userDao.retrieveUserByUsername(username);
-    console.log(user);
+
     // If no user exists
     if (user == undefined) {
         res.locals.user = null;

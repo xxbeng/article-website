@@ -9,6 +9,7 @@ const fs = require("fs");
 const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-middleware.js");
 
 const articlesDao = require("../modules/articles-dao.js");
+const commentDao = require("../modules/comments-dao.js");
 //const { appendConstructorOption } = require("jimp/types/index.js");
 
 // Whenever we navigate to /, verify that we're authenticated. If we are, render the home view.
@@ -19,7 +20,7 @@ router.get("/", async function (req, res) {
     res.locals.homePage = true;
     res.locals.title = 'Home';
 
-    res.render("article-display"); //home needs modification - article-display as reference maybe?
+    res.render("home"); //home needs modification - article-display as reference maybe?
 });
 
 //verify user logged in before loading user articles
@@ -113,10 +114,15 @@ router.get("/article-*", async function (req, res) {
     const articleId = urlArray[1];
     const article = await articlesDao.retrieveArticle(articleId);
     res.locals.article = article;
-    console.log(res.locals.article);
+
+    const comments = await commentDao.retrieveAllCommentsByArticle(articleId);
+    res.locals.comments = comments;
+
     res.render("single-article");
 });
 
+
+//upload image to files when user adds to their article
 router.post("/uploadImage", upload.single("file"), function(req, res) {
     const fileInfo = req.file;
     const oldFileName = fileInfo.path;
@@ -128,6 +134,29 @@ router.post("/uploadImage", upload.single("file"), function(req, res) {
 
     res.json(imgUrl);
     
-})
+});
+
+//comment on article
+router.post("/comment-*", async function (req, res) {
+    
+    const user = res.locals.user;
+    const url = req.originalUrl;
+    const urlArray = url.split("-");
+    const articleId = urlArray[1];
+
+    const comment = {
+        content: req.body.comment,
+        articleId: parseInt(articleId),
+        userId: user.id
+    };
+
+    await commentDao.createComment(comment);
+    res.setToastMessage("Comment has been posted!");
+
+    res.redirect(`./article-${articleId}`);
+
+});
+
+
 
 module.exports = router;

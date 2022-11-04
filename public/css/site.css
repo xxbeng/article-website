@@ -315,15 +315,22 @@ form .form-group {
     margin: auto;
     max-width: 1000px;
   }
+
+  /* header for editor page (new article creation) */
+  #newArticleHeader {
+    text-align: center;
+}
   
-  #title {
+  /* tinymce title input box */
+  #tinyTitle {
     text-align: left;
+    padding: 10px 10px 10px 10px;
     color: grey;
     margin: 50px 50px 50px 50px;
     border: 1px solid lightgray;
-  }
-/*****************************************************************/
+}
 
+/*****************************************************************/
 
 /* button */
 /*****************************************************************/

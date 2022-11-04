@@ -49,6 +49,19 @@ create table comments (
 	ON DELETE CASCADE
 );
 
+/* ---------------------------- Changed the layout of comment db to below
+create table comments (
+	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	content varchar(200) not null,
+	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
+	articleId integer NOT NULL, 
+	userId integer NOT NULL,
+	foreign key(articleId) REFERENCES articles (id),
+	foreign key(userId) REFERENCES users(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+); */
+
 create TABLE cToC (
 	cReceiverId integer NOT NULL,
 	cSenderId integer NOT NULL,

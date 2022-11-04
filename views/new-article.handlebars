@@ -1,13 +1,15 @@
-
-<div class="content-container">
+<div class="new-article-container">
 
 <form action={{#if article}}"./edit-{{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
+
+  {{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
+
   <div>
-    <h1><input type="text" name="title" id="title">{{article.title}}</h1> 
+    <h1 input type="text" id="tinyTitle" name="title">{{article.title}}
   </div>
 
   <div>
-    <textarea id="my-expressjs-tinymce-app" name="content">{{article.content}}</textarea>
+    <textarea id="tinyContent" name="content">{{article.content}}</textarea>
   </div>
   
  <div>
