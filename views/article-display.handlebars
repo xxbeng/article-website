@@ -1,20 +1,25 @@
-<div class="profile-container">
+<div class="content-container">
 
-{{#if articles}}
-    {{#each articles}}
-    <div class="card">
-        <div class="card-body">
-            <div class="article-edit"><a href="./edit-{{id}}">Edit</a></div> 
-            <div class="article-delete"><a href="./delete-{{id}}">Delete</a></div>
-            <h1 class="card-title">{{title}}<hr></h1>
-            <div class="card-header"><img class="card-image" src="./images/Dragonite.png"></a></div>
-            <p class="card-text">{{{content}}} <br><br> {{timestamp}}</p>
-        </div>
+    <div>
+        {{#if articles}}
+            {{#each articles}}
+            <div class="card">
+                <div class="card-body">
+                    <div class="article-edit"><a href="./edit-{{id}}">Edit</a></div> 
+                    <div class="article-delete"><a href="./delete-{{id}}">Delete</a></div>
+                    <h1 class="card-title">{{title}}</h1>
+                    <p class="card-time">{{timestamp}}</p>
+                    <div><img class="card-image" src="./images/Dragonite.png"></a></div>
+                    <h2 class="card-content">{{{content}}}</h2>
+                </div>
+                <div class="btn-box">
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            {{/each}}
+        {{else}}
+        <p>You have no articles! Go <a href="./newArticle">Create Article</a> now!</p>
+        {{/if}}
     </div>
-    {{/each}}
-{{else}}
-<p>You have no articles! Go <a href="./newArticle">Create Article</a> now!</p>
-{{/if}}
-
 </div>
 

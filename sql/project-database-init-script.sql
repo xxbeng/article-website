@@ -25,6 +25,6 @@ create table articles (
 	timestamp timestamp default CURRENT_TIMESTAMP,
 	userId INTEGER not null,
 	foreign key (userId) REFERENCES users (id)
-    ON UPDATE CASCADE -- to ensure articles delete when parent foreign key gets deleted
-    ON DELETE CASCADE
+    ON UPDATE CASCADE -- to update articles when parent foreign key gets updated
+    ON DELETE CASCADE -- to delete articles when parent foreign key gets deleted
 );
