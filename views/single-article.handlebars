@@ -2,9 +2,48 @@
         <div class="card-body">
             <div class="article-edit"><a href="./edit-{{article.id}}">Edit</a></div>
             <div class="article-delete"><a href="./delete-{{article.id}}">Delete</a></div>
-            <h1 class="card-title">{{article.title}}<hr></h1>
+            <h1 class="card-title">{{article.title}}</h1>
             <p class="card-text">{{{article.content}}} <br><br> {{article.timestamp}}</p>
         </div>
     </div>
 
-<textarea id="my-expressjs-tinymce-app">Hello, World!</textarea>
+{{!-- <div>
+    <textarea id="tinyComment" name="comment"></textarea>
+</div> --}}
+
+    <form action="./comment-{{article.id}}" method="POST">
+        <div id="commentSection">
+            <textarea name="comment" id="tinyComment"></textarea>
+        </div>
+
+        <div>
+            <button type="submit">Add Comment</button>
+            {{#if toastMessage}}
+            <p>{{toastMessage}}</p>
+            {{/if}}
+        </div>
+    </form>
+			
+    {{#if comments}}
+    <table class="commentsTable">
+        <thead>
+            <tr>
+                <th>Date / Time</th>
+                <th>User</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each comments}}
+            <tr>
+                <td>{{datenTime}}</td>
+                <td>{{userId}}</td>
+                <td>{{{content}}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No comments. Be the first to post a comment!</p>
+    {{/if}}
+
