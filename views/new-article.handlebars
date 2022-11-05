@@ -5,7 +5,6 @@
 <form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
   <div id="titlediv">
-{{!--     <h1 name="title" id="tinyTitle">{{#if article}}{{article.title}}{{/if}} --}}
     <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}">
   </div>
 

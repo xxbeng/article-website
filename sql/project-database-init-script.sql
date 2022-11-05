@@ -4,12 +4,12 @@
  * required.
  */
 
--- drop table if exists test;
--- drop table if exists cToC;
--- drop table if exists comments;
--- drop table if exists articles;
--- drop table if exists users;
-
+/*drop table if exists test;
+drop table if exists cToC;
+drop table if exists comments;
+drop table if exists articles;
+drop table if exists users;
+*/
 
 -- create user table
 create table users (
@@ -38,20 +38,6 @@ create table articles (
 );
 
 create table comments (
-	id integer NOT NULL,
-	content varchar(200) not null,
-	datenTime timestamp,
-	articleId integer NOT NULL, 
-	userId integer NOT NULL,
-	primary KEY(id),
-	foreign key(articleId) REFERENCES articles (id),
-	foreign key(userId) REFERENCES users(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-);
-
-/* ---------------------------- Changed the layout of comment db to below
-create table comments (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	content varchar(200) not null,
 	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -61,7 +47,7 @@ create table comments (
 	foreign key(userId) REFERENCES users(id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
-); */
+);
 
 create TABLE cToC (
 	cReceiverId integer NOT NULL,
