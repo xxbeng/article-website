@@ -1,7 +1,7 @@
 <div class="card">
         <div class="card-body">
-            <div class="article-edit"><a href="./edit-{{article.id}}">Edit</a></div>
-            <div class="article-delete"><a href="./delete-{{article.id}}">Delete</a></div>
+            {{#if isUserArticle}}<div class="article-edit"><a href="./edit?articleId={{article.id}}">Edit</a></div>
+            <div class="article-delete"><a href="./delete?articleId={{article.id}}">Delete</a></div>{{/if}}
             <h1 class="card-title">{{article.title}}</h1>
             <p class="card-text">{{{article.content}}} <br><br> {{article.timestamp}}</p>
         </div>
@@ -11,7 +11,7 @@
     <textarea id="tinyComment" name="comment"></textarea>
 </div> --}}
 
-    <form action="./comment-{{article.id}}" method="POST">
+    <form action="./comment?articleId={{article.id}}" method="POST">
         <div id="commentSection">
             <textarea name="comment" id="tinyComment"></textarea>
         </div>

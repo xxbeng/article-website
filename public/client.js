@@ -61,8 +61,8 @@ avatarImg.forEach(function(img) {
 //navbar dropdpwn when responsive
 
 
+}); 
 
-});
 
 
   

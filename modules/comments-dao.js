@@ -27,7 +27,19 @@ async function retrieveAllCommentsByArticle(articleId) {
     return comments;
 }
 
+//delete ALL comments from article by articleId
+async function deleteAllCommentsByArticle(articleId) {
+    const db = await dbPromise;
+
+    await db.run (
+        SQL`DELETE FROM comments
+        WHERE articleId = ${articleId}`
+    );
+};
+
+
 module.exports = {
     createComment,
-    retrieveAllCommentsByArticle
+    retrieveAllCommentsByArticle,
+    deleteAllCommentsByArticle
 };
