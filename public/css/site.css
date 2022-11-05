@@ -427,6 +427,10 @@ form .form-group {
     #log {
         float: none;
     }
+
+    #log-out {
+      display: block;
+    }
 }
 
 
