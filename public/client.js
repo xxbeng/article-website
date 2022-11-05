@@ -60,9 +60,14 @@ avatarImg.forEach(function(img) {
 
 //navbar dropdpwn when responsive
 
+//comment to comment js
+const replyButton = document.querySelector("#replyButton");
+const eachComment = document.querySelector("#eachComment");
+
 
 
 });
+
 
 
   
