@@ -12,7 +12,7 @@ const dbPromise = require("./database.js");
     const db = await dbPromise;
 
     const result = await db.run(SQL`
-        insert into users (username, password, fname, lname, dateOfBirth, description) values(${user.username}, ${user.password}, ${user.fname}, ${user.lname}, ${user.dateOfBirth}, ${user.description})`);
+        insert into users (username, password, fname, lname, dateOfBirth, description, icon) values(${user.username}, ${user.password}, ${user.fname}, ${user.lname}, ${user.dateOfBirth}, ${user.description},${user.icon})`);
 
     // Get the auto-generated ID value, and assign it back to the user object.
     user.id = result.lastID;
@@ -45,7 +45,7 @@ const dbPromise = require("./database.js");
     await db.run(SQL`
         update users
         set username = ${user.username}, password = ${user.password},
-            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}, authToken = ${user.authToken}
+            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}, authToken = ${user.authToken}, icon = ${user.icon}
         where id = ${user.id}`);
 }
 
@@ -111,7 +111,7 @@ async function retrieveAllUsernames() {
     await db.run(SQL`
         update users
         set username = ${user.username}, 
-            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description}
+            fname = ${user.fname}, lname = ${user.lname}, dateOfBirth = ${user.dateOfBirth}, description = ${user.description},icon = ${user.icon}
         where id = ${id}`);
 }
 
@@ -127,6 +127,20 @@ async function retrieveAllUsernames() {
     );
 }
 
+/**
+ * Check if username is already taken in database
+ */
+ async function checkUsernameAvailable(username) {
+    const db = await dbPromise;
+
+    const user = await db.get(SQL`
+        SELECT *
+        from users
+        where username = ${username};`
+    );
+
+    return user;
+}
 
 // Export functions.
 module.exports = {
@@ -139,5 +153,6 @@ module.exports = {
     updateUserInformation,
     retrieveAllUsernames,
     deleteUser,
+    checkUsernameAvailable
 };
 

@@ -4,11 +4,11 @@
  * required.
  */
 
-drop table if exists test;
-drop table if exists cToC;
-drop table if exists comments;
-drop table if exists articles;
-drop table if exists users;
+-- drop table if exists test;
+-- drop table if exists cToC;
+-- drop table if exists comments;
+-- drop table if exists articles;
+-- drop table if exists users;
 
 
 -- create user table
@@ -21,7 +21,8 @@ create table users (
 	lname varchar(64),
 	dateOfBirth DATE,
 	description varchar(500),
-    authToken varchar(128)
+    authToken varchar(128),
+	icon varchar(128)
 );
 
 -- create articles table
