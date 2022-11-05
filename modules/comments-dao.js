@@ -32,6 +32,7 @@ async function retrievRootCommentByArticle(articleId) {
     return comments;
 }
 
+// add comment to comment into database
 async function createCommentToComment(cReceiverId, cSenderId) {
     const db = await dbPromise;
 
@@ -41,6 +42,7 @@ async function createCommentToComment(cReceiverId, cSenderId) {
     );
 }
 
+//select child comments
 async function retrieveCommentReplyComment (id){
     const db = await dbPromise;
     const repliedComments = await db.all (
@@ -54,6 +56,7 @@ async function retrieveCommentReplyComment (id){
 
     return repliedComments;
 }
+
 module.exports = {
     createComment,
     retrievRootCommentByArticle,

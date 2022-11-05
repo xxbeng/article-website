@@ -219,7 +219,7 @@ router.post("/commentToComment-*", async function (req, res) {
     const receiverId = urlArray[2];
     await commentDao.createCommentToComment(receiverId,senderId);
     res.redirect(`./article-${articleId}`);
-})
+});
 
 
 
