@@ -64,7 +64,7 @@ async function updateArticle(article) {
 };
 
 //delete a single article
-async function deleteArticle(id) {
+async function deleteArticleByUser(id) {
     const db = await dbPromise;
 
     await db.run (
@@ -90,6 +90,6 @@ module.exports = {
     retrieveAllArticles,
     retrieveArticle,
     updateArticle,
-    deleteArticle,
+    deleteArticleByUser,
     deleteAllArticlesByUser
 };
