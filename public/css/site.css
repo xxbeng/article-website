@@ -320,22 +320,29 @@ form .form-group {
   /* tinymce editor box */
   .new-article-container {
     margin: auto;
-    max-width: 1000px;
+    max-width: 1500px;
   }
 
   /* header for editor page (new article creation) */
   #newArticleHeader {
     text-align: center;
 }
-  
+
   /* tinymce title input box */
-  #tinyTitle {
+  #titlediv {
+    text-align: center;
+  }
+
+  /* tinymce title input box */
+  #titlediv > input {
+    width: 80%;
     text-align: left;
-    padding: 10px 10px 10px 10px;
-    color: grey;
-    margin: 50px 50px 50px 50px;
+    font-size: x-large;
     border: 1px solid lightgray;
-}
+    color: grey;
+    margin: 50px 0px 50px 0px;
+    padding: 20px 10px 20px 10px;
+  }
 
 /*****************************************************************/
 
@@ -347,7 +354,7 @@ form .form-group {
     color: white;
     padding: 8px 40px;
     text-decoration: none;
-    margin: 4px 2px;
+    margin: 30px 10px;
     cursor: pointer;
     font-size: 15px;
   }
@@ -358,9 +365,8 @@ form .form-group {
     color: white;
     padding: 8px 40px;
     text-decoration: none;
-    margin: 4px 2px;
+    margin: 30px 10px;
     cursor: pointer;
-    margin:100%;
     font-size: 15px;
   }
 
