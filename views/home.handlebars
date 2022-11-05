@@ -6,3 +6,26 @@
     <h1><a href="./newAccount">Register</a></h1>
     
 </div>
+
+<div class="home-container">
+
+    <div>
+        {{#if articles}}
+            {{#each articles}}
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title"><a href="./article?articleId={{id}}">{{title}}</a></h1>
+                    <p class="card-time">{{timestamp}}</p>
+                    <h2 class="card-content">{{{content}}}</h2>
+                </div>
+                <div class="btn-box">
+                    <a href="./article?articleId={{id}}">Read More</a>
+                </div>
+            </div>
+            {{/each}}
+        {{else}}
+        <p>You have no articles! Go <a href="./newArticle">Create Article</a> now!</p>
+        {{/if}}
+    </div>
+    
+</div>

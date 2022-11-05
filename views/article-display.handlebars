@@ -5,12 +5,12 @@
             {{#each articles}}
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title"><a href="./article-{{id}}">{{title}}</a></h1>
+                    <h1 class="card-title"><a href="./article?articleId={{id}}">{{title}}</a></h1>
                     <p class="card-time">{{timestamp}}</p>
                     <h2 class="card-content">{{{content}}}</h2>
                 </div>
                 <div class="btn-box">
-                    <a href="./article-{{id}}">Read More</a>
+                    <a href="./article?articleId={{id}}">Read More</a>
                 </div>
             </div>
             {{/each}}

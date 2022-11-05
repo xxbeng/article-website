@@ -10,7 +10,7 @@ const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-mid
 
 const articlesDao = require("../modules/articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
-//const { appendConstructorOption } = require("jimp/types/index.js");
+// const { appendConstructorOption } = require("jimp/types/index.js");
 
 // Whenever we navigate to /, verify that we're authenticated. If we are, render the home view.
 router.get("/", async function (req, res) {
@@ -23,8 +23,10 @@ router.get("/", async function (req, res) {
     res.render("home"); //home needs modification - article-display as reference maybe?
 });
 
-//verify user logged in before loading user articles
+
+//verify user logged in before loading user articles in profile
 router.get("/myProfile", verifyAuthenticated, async function (req, res) {
+
 
     //insert code to load user articles in their profile page
     const user = res.locals.user;
@@ -37,7 +39,7 @@ router.get("/myProfile", verifyAuthenticated, async function (req, res) {
 });
 
 //verify user logged in before creating article
-router.get("/newArticle", async function (req, res) {
+router.get("/newArticle", verifyAuthenticated, async function (req, res) {
 
     res.locals.newArticlePage = true;
     res.locals.title = 'Create New Article';
@@ -46,7 +48,7 @@ router.get("/newArticle", async function (req, res) {
 
 });
 
-//add new article and redirect to profile
+//add new article only if title has been inputted and redirect to profile
 router.post("/newArticle", async function (req, res) {
 
     const user = res.locals.user;
@@ -62,12 +64,10 @@ router.post("/newArticle", async function (req, res) {
     res.redirect("./myProfile");
 });
 
-//edit article - get article details into text editor
-router.get("/edit-*", async function (req, res) {
+//edit article - get specific article details into text editor for modification purposes
+router.get("/edit", async function (req, res) {
     
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+    const articleId = req.query.articleId;
 
     const article = await articlesDao.retrieveArticle(articleId);
     res.locals.article = article;
@@ -77,12 +77,10 @@ router.get("/edit-*", async function (req, res) {
 
 });
 
-//edit article - update in db
-router.post("/edit-*", async function (req, res) { 
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+//save changes made to an existing article title and content to db and show new article when redirected to profile page
+router.post("/edit", async function (req, res) { 
 
+    const articleId = req.query.articleId;
     const retrievedArticle = await articlesDao.retrieveArticle(articleId);
     
     const article = {
@@ -96,24 +94,32 @@ router.post("/edit-*", async function (req, res) {
     res.redirect("./myProfile");
 });
 
-//delete article selected
-router.get("/delete-*", async function (req, res) {
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+//delete selected article and all comments associated with that article
+router.get("/delete", async function (req, res) {
 
-    await articlesDao.deleteArticle(articleId);
+    const articleId = req.query.articleId;
+
+    console.log(articleId);
+
+    await articlesDao.deleteArticleByUser(articleId);
+    await commentDao.deleteAllCommentsByArticle(articleId);
 
     res.redirect("./myProfile");
 });
 
 //click to view one article in page (set up for comments)
-router.get("/article-*", async function (req, res) {
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+router.get("/article", async function (req, res) {
+
+    const user = res.locals.user;
+    const articleId = req.query.articleId;
     const article = await articlesDao.retrieveArticle(articleId);
     res.locals.article = article;
+    if (user.id == article.userId) {
+        res.locals.isUserArticle = true;
+    }
+    else {
+        res.locals.isUserArticle = false;
+    };
 
     const comments = await commentDao.retrievRootCommentByArticle(articleId);
 
@@ -181,24 +187,23 @@ router.post("/uploadImage", upload.single("file"), function(req, res) {
     
 });
 
-//comment on article
-router.post("/comment-*", async function (req, res) {
+//comment on article and redirect to article to see new comment added
+router.post("/comment", async function (req, res) {
     
     const user = res.locals.user;
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+
+    const articleId = req.query.articleId;
 
     const comment = {
         content: req.body.comment,
-        articleId: parseInt(articleId),
+        articleId: articleId,
         userId: user.id
     };
 
     await commentDao.createComment(comment);
     res.setToastMessage("Comment has been posted!");
 
-    res.redirect(`./article-${articleId}`);
+    res.redirect(`./article?articleId=${articleId}`);
 
 });
 

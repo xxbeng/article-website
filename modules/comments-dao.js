@@ -15,8 +15,6 @@ async function createComment(comment) {
     return result.lastID;
 };
 
-
-
 //get all comments in one article
 async function retrievRootCommentByArticle(articleId) {
     const db = await dbPromise;
@@ -57,9 +55,20 @@ async function retrieveCommentReplyComment (id){
     return repliedComments;
 }
 
+//delete ALL comments from article by articleId
+async function deleteAllCommentsByArticle(articleId) {
+    const db = await dbPromise;
+
+    await db.run (
+        SQL`DELETE FROM comments
+        WHERE articleId = ${articleId}`
+    );
+}
+
 module.exports = {
     createComment,
     retrievRootCommentByArticle,
     createCommentToComment,
-    retrieveCommentReplyComment
+    retrieveCommentReplyComment,
+    deleteAllCommentsByArticle
 };

@@ -21,7 +21,8 @@ create table users (
 	lname varchar(64),
 	dateOfBirth DATE,
 	description varchar(500),
-    authToken varchar(128)
+    authToken varchar(128),
+	icon varchar(128)
 );
 
 -- create articles table
@@ -37,20 +38,6 @@ create table articles (
 );
 
 create table comments (
-	id integer NOT NULL,
-	content varchar(200) not null,
-	datenTime timestamp,
-	articleId integer NOT NULL, 
-	userId integer NOT NULL,
-	primary KEY(id),
-	foreign key(articleId) REFERENCES articles (id),
-	foreign key(userId) REFERENCES users(id)
-	ON UPDATE CASCADE
-	ON DELETE CASCADE
-);
-
-/* ---------------------------- Changed the layout of comment db to below
-create table comments (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	content varchar(200) not null,
 	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -60,7 +47,7 @@ create table comments (
 	foreign key(userId) REFERENCES users(id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE
-); */
+);
 
 create TABLE cToC (
 	cReceiverId integer NOT NULL,

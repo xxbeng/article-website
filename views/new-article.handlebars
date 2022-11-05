@@ -1,17 +1,15 @@
 <div class="new-article-container">
 
-<form action={{#if article}}"./edit-{{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
+{{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
 
-  {{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
+<form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
-  <div>
-    <h1>
-      <input id="tinyTitle" type="text"  name="title">{{article.title}}
-    </h1>
+  <div id="titlediv">
+    <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}">
   </div>
 
   <div>
-    <textarea id="tinyContent" name="content">{{article.content}}</textarea>
+    <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}</textarea>
   </div>
   
  <div>
