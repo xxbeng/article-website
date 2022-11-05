@@ -1,5 +1,8 @@
 <div class="content-container">
 
+    {{! reference the client side js }}
+    <script src="../update.js"></script>
+
     <div class="auth-container">
     {{! Display a message if one was provided. }}
     {{#if toastMessage}}
@@ -8,6 +11,25 @@
 
     <h1 class="auth-title"><b>Update Account Details</b></h1>
         <form action="./updateAccount" method="POST">
+
+            <div>
+                <p>My profile photo:</p> 
+                <div class="avatar-detail">
+                    <input style="display: none;" type="text" name="profileAvatar" id="profileAvatar" value="{{user.icon}}">
+                    <img id="profileImg" class="profile-avatar" src="{{user.icon}}">
+                    <br>
+                    <div id="avtarGallery">
+                        <img class="avatar" src="../avatar/avatar1.png">
+                        <img class="avatar" src="../avatar/avatar2.png">
+                        <img class="avatar" src="../avatar/avatar3.png">
+                        <img class="avatar" src="../avatar/avatar4.png">
+                        <img class="avatar" src="../avatar/avatar5.png">
+                        <img class="avatar" src="../avatar/avatar6.png">
+                    </div>
+                </div>
+                
+            </div>
+
             <div class="flex-col mb">
                 <label for="txtUsername"><b>Username:</b></label>
                 <input type="text" name="username" id="txtUsername" value="{{user.username}}" required>

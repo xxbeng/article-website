@@ -15,18 +15,20 @@ router.get("/newAccount", function (req, res) {
     res.render("new-account");
 })
 
+// req account info from input
 router.post("/newAccount", async function (req, res) {
 
     const plainpassword = req.body.password;
     const password = bcrypt.hashSync(plainpassword, saltRounds);
-
+   
     const user = {
         username: req.body.username,
         password: password,
         fname: req.body.fname,
         lname: req.body.lname,
         dateOfBirth: req.body.dateOfBirth,
-        description: req.body.description
+        description: req.body.description,
+        icon: req.body.profileAvatar,
     };
 
 //make sure the username is unique
@@ -129,20 +131,32 @@ router.get("/updateAccount",addUserToLocals, function(req, res){
 router.post("/updateAccount", async function (req,res){
     
     const userInfo = res.locals.user;
+    const usernameSubmit = req.body.username;
 
-    //save new input in array
-    const newUserInfo = {
-        username: req.body.username,
-        fname: req.body.fname,
-        lname: req.body.lname,
-        dateOfBirth: req.body.dateOfBirth,
-        description: req.body.description,
-    };
+    // check if username is already taken 
+    const checkUser = await userDao.checkUsernameAvailable(usernameSubmit);
+
+    if (checkUser && userInfo.id != checkUser.id) {
+        res.setToastMessage("Username exists, please choose another one!");
+        res.redirect("./updateAccount");
+    }
+    else{
+
+        //save new input in array
+        const nupdateUserInfo = {
+            username: req.body.username,
+            fname: req.body.fname,
+            lname: req.body.lname,
+            dateOfBirth: req.body.dateOfBirth,
+            description: req.body.description,
+            icon: req.body.profileAvatar,
+        };
+
         //update data base with new info and its original id
-        await userDao.updateUserInformation(newUserInfo, userInfo.id);
+        await userDao.updateUserInformation(nupdateUserInfo, userInfo.id);
         res.setToastMessage("Your personal information has been updated!"); 
         res.redirect("/myDetail"); //direct to my detail
-
+    }
 });
 
 //navigate to updatepassword page

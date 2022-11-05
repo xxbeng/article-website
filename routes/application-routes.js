@@ -10,7 +10,7 @@ const { verifyAuthenticated, addUserToLocals } = require("../middleware/auth-mid
 
 const articlesDao = require("../modules/articles-dao.js");
 const commentDao = require("../modules/comments-dao.js");
-//const { appendConstructorOption } = require("jimp/types/index.js");
+// const { appendConstructorOption } = require("jimp/types/index.js");
 
 // Whenever we navigate to /, verify that we're authenticated. If we are, render the home view.
 router.get("/", async function (req, res) {
@@ -24,7 +24,7 @@ router.get("/", async function (req, res) {
 });
 
 //verify user logged in before loading user articles
-router.get("/myProfile", verifyAuthenticated, async function (req, res) {
+router.get("/", verifyAuthenticated, async function (req, res) {
 
     //insert code to load user articles in their profile page
     const user = res.locals.user;

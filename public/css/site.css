@@ -64,7 +64,7 @@ img {
 .header {
     padding: 100px;
     text-align: center;
-    background: white;
+    background: #f1f1f1;
     background-image: url("../images/header-img.png");
     background-repeat: no-repeat;
     background-size: 100%;
@@ -109,8 +109,9 @@ body {
     overflow: hidden;
     background-color: #333;
     text-align: center;
-    position: sticky;
+    position: absolute;
     top:0px;
+    width: 100%;
   }
   
   .topnav a {
@@ -133,11 +134,11 @@ body {
     color: white;
   }
 
-  .sticky {
+  /* .sticky {
     position: fixed;
     top: 0;
     width: 100%;
-  }
+  } */
 
   /* .toggle-button {
     position: absolute;
@@ -158,8 +159,14 @@ body {
   /* } */
   .topnav .icon {
     display: none;
+    position: absolute;
+    top: -0.2rem;
+    right: 0.3rem;
   }
 
+  #log{
+    float: right;
+  }
   /* .sticky + .content {
     padding-top: 60px;
   } */
@@ -383,6 +390,10 @@ form .form-group {
 .select-avatar {
     text-align: center;
 }
+
+.avatar-detail {
+  text-align: center;
+}
 /*****************************************************************/
 
 /* Responsive design */
@@ -413,6 +424,9 @@ form .form-group {
       float: right;
       display: block;
     }
+    #log {
+        float: none;
+    }
 }
 
 
@@ -420,15 +434,17 @@ form .form-group {
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
       position: absolute;
-      right: 0;
-      top: 0;
+      top: -0.2rem;
+      right: 0.3rem;
     }
     .topnav.responsive a {
       float: none;
       display: block;
-      text-align: left;
+      text-align: center;
+      position: sticky;
     }
   }
+
 
 @media screen and (min-width: 900px) and (max-width: 1320px) {
     .card {
