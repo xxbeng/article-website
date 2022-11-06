@@ -12,7 +12,7 @@ window.addEventListener("load", function() {
     function displayChildComment (comment, level, element) {
         let newelement = document.createElement("div");
         newelement.innerHTML =  `
-        <table class="commentsTable">
+        <table class="comments-table">
 
         <tbody>
             
@@ -20,9 +20,11 @@ window.addEventListener("load", function() {
                 <td>${comment.content}</td>
             </tr>
             <tr>
-                <td>Date/Time: ${comment.datenTime}</td>
-                <td>User: ${comment.username}</td>
-                <td>User Id: ${comment.userId}</td>
+                <td class="comment-content">${comment.datenTime}</td>
+                <td></td>
+                <td class="comment-content">By user: ${comment.username}</td>
+                <td></td>
+                <td class="comment-content">User Id: ${comment.userId}</td>
             </tr>
                 
             <tr>
@@ -61,11 +63,12 @@ window.addEventListener("load", function() {
     }
     
     loadChildComment();
+
+    
 });
 
 function commentReply(replyElement) {
     const receiverId = replyElement.id.split("-")[1];
     const form =  document.querySelector(`#form-${receiverId}`);
     form.style.display = "";
-
 }
