@@ -32,7 +32,7 @@ create table articles (
 	content text not null,
 	timestamp timestamp default CURRENT_TIMESTAMP,
 	userId INTEGER not null,
-  	articleDescription VARCHAR(128),
+  	articleDescription VARCHAR(70),
 	foreign key (userId) REFERENCES users (id)
 	-- foreign key (username) REFERENCES users (username)
     ON UPDATE CASCADE -- to update articles when parent foreign key gets updated
