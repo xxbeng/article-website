@@ -2,7 +2,7 @@
 
     <div class="name-container">
         {{#if user}}
-        <h1>Hello, {{user.username}}!</h1>
+        <h1>Hello, {{user.fname}}!</h1>
         {{else}}
         <h1>Hello, stranger!</h1>
         {{/if}}
@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h1 class="card-title"><a href="./article?articleId={{id}}">{{title}}</a></h1>
                     <p class="card-time">{{timestamp}}</p>
-                    <h2 class="card-content">{{articleDescription}}</h2>
+                    <h2 class="card-description">{{articleDescription}}</h2>
                 </div>
                 <div class="btn-box">
                     <a href="./article?articleId={{id}}">Read More</a>

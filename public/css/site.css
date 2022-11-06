@@ -236,9 +236,10 @@ body {
     text-align: center;
   }
 
-  /* .card-content {
+  .card-description {
     font-style: normal;
-  } */
+    height: 50px;
+  }
 
   .card-footer {
     margin: 2px;
@@ -355,6 +356,8 @@ form .form-group {
   .new-article-container {
     margin: auto;
     max-width: 1500px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
   /* header for editor page (new article creation) */
@@ -363,12 +366,12 @@ form .form-group {
 }
 
   /* tinymce title input box */
-  #titlediv {
+  /* #titlediv {
     text-align: center;
-  }
+  } */
 
   /* tinymce title input box */
-  #titlediv > input {
+  /* #titlediv > input {
     width: 80%;
     text-align: left;
     font-size: x-large;
@@ -376,7 +379,7 @@ form .form-group {
     color: grey;
     margin: 0px 0px 0px 0px;
     padding: 10px 10px 10px 10px;
-  }
+  } */
 
   /* container containing all comments */
   #childComment {

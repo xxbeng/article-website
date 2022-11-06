@@ -1,3 +1,62 @@
+drop table if exists test;
+drop table if exists cToC;
+drop table if exists comments;
+drop table if exists articles;
+drop table if exists users;
+
+-- create user table
+create table users (
+    id integer not null primary key,
+-- username is unique
+    username varchar(64) unique not null,
+    password varchar(64) not null,
+    fname varchar(64),
+	lname varchar(64),
+	dateOfBirth DATE,
+	description varchar(500),
+    authToken varchar(128),
+	icon varchar(128)
+);
+
+-- create articles table
+create table articles (
+	id INTEGER not null primary key AUTOINCREMENT,
+	title varchar(64) not null,
+	content text not null,
+	timestamp timestamp default CURRENT_TIMESTAMP,
+	userId INTEGER not null,
+    articleDescription VARCHAR(128),
+	foreign key (userId) REFERENCES users (id)
+	-- foreign key (username) REFERENCES users (username)
+    ON UPDATE CASCADE -- to update articles when parent foreign key gets updated
+    ON DELETE CASCADE -- to delete articles when parent foreign key gets deleted
+);
+
+-- create comments table
+create table comments (
+	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	content varchar(200) not null,
+	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
+	articleId integer NOT NULL, 
+	userId integer NOT NULL,
+	username varchar(64) not null,
+	foreign key(articleId) REFERENCES articles (id),
+	foreign key(username) REFERENCES users(username),
+	foreign key(userId) REFERENCES users(id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+-- create comment to comment table
+create TABLE cToC (
+	cReceiverId integer NOT NULL,
+	cSenderId integer NOT NULL,
+	FOREIGN KEY (cReceiverId) REFERENCES comments (id),
+	FOREIGN KEY (cSenderId) REFERENCES comments (id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
 INSERT INTO users (id, username, password, fname, lname, dateOfBirth, description, icon) VALUES
 	(1, 'user3', '$2b$10$niF1ZOeWTi17AsFf2mof2uiC/bOGSShKMm1/W4PpnFTPMUIxuLBUy', 'Georgia', 'User3', '1990-01-17', 'i am a photographer', 'http://localhost:3000/avatar/avatar6.png'),
 	(2, 'user1', '$2b$10$.FSzsEf2ePkoxlAZu1Dx9ucGWAFBEggM2Q1Vo2PajiLGE68YhOjp6', 'Tommy', 'User1', '1986-11-06', 'i am me, and me is me', 'http://localhost:3000/avatar/avatar3.png'),
