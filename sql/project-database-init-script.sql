@@ -5,6 +5,7 @@
  */
 
 -- delete table if exists in db
+
 drop table if exists test;
 drop table if exists cToC;
 drop table if exists comments;
@@ -44,7 +45,9 @@ create table comments (
 	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
 	articleId integer NOT NULL, 
 	userId integer NOT NULL,
+	username varchar(64) not null,
 	foreign key(articleId) REFERENCES articles (id),
+	foreign key(username) REFERENCES users(username),
 	foreign key(userId) REFERENCES users(id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE

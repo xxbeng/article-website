@@ -136,31 +136,16 @@ router.get("/article", async function (req, res) {
 
     const comments = await commentDao.retrievRootCommentByArticle(articleId);
 
-    // async function FindChildComment(comment){
-    //     const childComment = await commentDao.retrieveCommentReplyComment(comment.id);
-
-    //     if (childComment.length != 0) {
-    //         comment.childComments = childComment;
-    //         childComment.forEach(FindChildComment);
-    //     }
-
-    // }
-
-    // comments.forEach(FindChildComment);
-
     res.locals.comments = comments;
 
     res.render("single-article");
 });
 
 //render child comment
-router.get("/articlecomment-*", async function (req, res) {
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+router.get("/articlecomment", async function (req, res) {
+    const articleId = req.query.articleId;
 
     const comments = await commentDao.retrievRootCommentByArticle(articleId);
-
     async function FindChildComment(comment){
 
         const childComment = await commentDao.retrieveCommentReplyComment(comment.id)
@@ -181,7 +166,6 @@ router.get("/articlecomment-*", async function (req, res) {
     }
 
     res.locals.comments = comments;
-
     res.json(comments);
 });
 
@@ -210,7 +194,8 @@ router.post("/comment", async function (req, res) {
     const comment = {
         content: req.body.comment,
         articleId: articleId,
-        userId: user.id
+        userId: user.id,
+        username: user.username
     };
 
     await commentDao.createComment(comment);
@@ -220,23 +205,22 @@ router.post("/comment", async function (req, res) {
 
 });
 
-router.post("/commentToComment-*", async function (req, res) {
+router.post("/commentToComment", async function (req, res) {
     const user = res.locals.user;
-    const url = req.originalUrl;
-    const urlArray = url.split("-");
-    const articleId = urlArray[1];
+    const articleId = req.query.articleId;
     
 
     const comment = {
         content: req.body.comment,
         articleId: parseInt(articleId),
-        userId: user.id
+        userId: user.id,
+        username: user.username
     };
 
     const senderId = await commentDao.createComment(comment);
-    const receiverId = urlArray[2];
+    const receiverId = req.query.commentId;
     await commentDao.createCommentToComment(receiverId,senderId);
-    res.redirect(`./article-${articleId}`);
+    res.redirect(`./article?articleId=${articleId}`);
 });
 
 

@@ -8,10 +8,6 @@
         </div>
     </div>
 
-{{!-- <div>
-    <textarea id="tinyComment" name="comment"></textarea>
-</div> --}}
-
     <form action="./comment?articleId={{article.id}}" method="POST">
         <div id="commentSection">
             <textarea name="comment" id="tinyComment"></textarea>
@@ -25,47 +21,8 @@
         </div>
     </form>
 
-    <div id="childComment">
-
-    </div>
-			
-    {{#if comments}}
-    <table class="commentsTable">
-        <thead>
-            <tr>
-                <th>Date / Time</th>
-                <th>User</th>
-                <th>Content</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each comments}}
-            <table id="eachComment">
-            <tr>
-                <td>{{datenTime}}</td>
-                <td>{{userId}}</td>
-                <td>{{{content}}}</td>
-            </tr>
-            
-            <tr>
-                <td>
-                <button onclick="commentReply(this)" id="reply-{{id}}">reply</button>
-
-                <form id="form-{{id}}" action="./commentToComment-{{articleId}}-{{id}}" method="post" style="display: none;">
-                    <div id="commentSection">
-                        <textarea name="comment" id="tinyComment"></textarea>
-                    </div>
-                    <button type="submit">Add Comment</button>
-                </form> 
-                </td>      
-            </tr>
-            
-            </table>
-            
-            {{/each}}
-        </tbody>
-    </table>
-    {{else}}
+    <div id="childComment"></div>
+		
     <p>No comments. Be the first to post a comment!</p>
-    {{/if}}
+   
 

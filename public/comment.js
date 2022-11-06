@@ -3,7 +3,7 @@ let articleIdGlobal;
 window.addEventListener("load", function() { 
     async function fetchChildComment(articleId) {
         articleIdGlobal = articleId;
-        const response = await fetch(`./articlecomment-${articleId}`);
+        const response = await fetch(`./articlecomment?articleId=${articleId}`);
         const childCommentJson =  await response.json();
     
         return childCommentJson;
@@ -13,27 +13,23 @@ window.addEventListener("load", function() {
         let newelement = document.createElement("div");
         newelement.innerHTML =  `
         <table class="commentsTable">
-        <thead>
-            <tr>
-                <th>Date / Time</th>
-                <th>User</th>
-                <th>Content</th>
-            </tr>
-        </thead>
+
         <tbody>
             
-            <table id="eachComment">
             <tr>
-                <td>${comment.datenTime}</td>
-                <td>${comment.userId}</td>
                 <td>${comment.content}</td>
             </tr>
-            
+            <tr>
+                <td>Date/Time: ${comment.datenTime}</td>
+                <td>User: ${comment.username}</td>
+                <td>User Id: ${comment.userId}</td>
+            </tr>
+                
             <tr>
                 <td>
                 <button onclick="commentReply(this)" id="reply-${comment.id}">reply</button>
     
-                <form id="form-${comment.id}" action="./commentToComment-${articleIdGlobal}-${comment.id}" method="post" style="display: none;">
+                <form id="form-${comment.id}" action="./commentToComment?articleId=${articleIdGlobal}&commentId=${comment.id}" method="post" style="display: none;">
                     <div id="commentSection">
                         <textarea name="comment" id="tinyComment"></textarea>
                     </div>
@@ -56,7 +52,7 @@ window.addEventListener("load", function() {
     
     async function loadChildComment() {
         const element = document.getElementById("childComment")
-        const articleId = window.location.href.split("-")[1];
+        const articleId = window.location.href.split("=")[1];
         const childComments = await fetchChildComment(articleId);
         for (const childComment of childComments) {
             displayChildComment (childComment, 0, element);
@@ -67,8 +63,8 @@ window.addEventListener("load", function() {
     loadChildComment();
 });
 
-function commentReply(element) {
-    const receiverId = element.id.split("-")[1];
+function commentReply(replyElement) {
+    const receiverId = replyElement.id.split("-")[1];
     const form =  document.querySelector(`#form-${receiverId}`);
     form.style.display = "";
 
