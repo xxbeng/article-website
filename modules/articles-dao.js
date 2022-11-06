@@ -7,8 +7,8 @@ async function createArticle(article) {
     const db = await dbPromise;
 
     await db.run(
-        SQL`INSERT INTO articles (title, content, userId) VALUES
-        (${article.title}, ${article.content}, ${article.userId})`
+        SQL`INSERT INTO articles (title, content, userId, articleDescription) VALUES
+        (${article.title}, ${article.content}, ${article.userId}, ${article.articleDescription})`
     );
 };
 
@@ -58,7 +58,7 @@ async function updateArticle(article) {
 
     await db.run(
         SQL`update articles
-        set title = ${article.title}, content = ${article.content}
+        set title = ${article.title}, content = ${article.content}, articleDescription = ${article.articleDescription}
         where id = ${article.id}`
     );
 };
@@ -83,6 +83,19 @@ async function deleteAllArticlesByUser(userId) {
     );
 };
 
+// //get username by article table userid
+// async function getUsernameByArticleUserId(userId) {
+//     const db = await dbPromise;
+
+//     await db.get (
+//         SQL`select u.username
+//         from users u, articles a
+//         where u.id = a.userId
+//         and a.id = ${userId}`
+//     );
+// };
+
+
 
 module.exports = {
     createArticle,
@@ -91,5 +104,6 @@ module.exports = {
     retrieveArticle,
     updateArticle,
     deleteArticleByUser,
-    deleteAllArticlesByUser
+    deleteAllArticlesByUser,
+    // getUsernameByArticleUserId
 };
