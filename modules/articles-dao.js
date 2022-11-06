@@ -83,17 +83,7 @@ async function deleteAllArticlesByUser(userId) {
     );
 };
 
-// //get username by article table userid
-// async function getUsernameByArticleUserId(userId) {
-//     const db = await dbPromise;
 
-//     await db.get (
-//         SQL`select u.username
-//         from users u, articles a
-//         where u.id = a.userId
-//         and a.id = ${userId}`
-//     );
-// };
 
 
 

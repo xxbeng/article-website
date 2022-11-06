@@ -17,9 +17,11 @@ window.addEventListener("load", function() {
     
     usernameInput.addEventListener("input", function(){
             usernameInput.style.border = "5px solid green";
+            document.querySelector("#unique-user-note").innerHTML='';
+            
         usernameJsonGlobal.forEach(function(user){
             if (usernameInput.value == user.username) {
-            document.querySelector("#unique-user-note").innerHTML = "this username name has been taken, please try something else";
+            document.querySelector("#unique-user-note").innerHTML = "This username name has been taken, please try something else";
             usernameInput.style.border = "5px solid red";
             }
         })
@@ -36,7 +38,7 @@ window.addEventListener("load", function() {
     
     rePasswordInput.addEventListener("change", function(){
         if (passwordInput.value !== rePasswordInput.value) {
-            document.querySelector("#password-check-note").innerHTML = "the re-entered password does not match the password you created, please try again"
+            document.querySelector("#password-check-note").innerHTML = "The re-entered password does not match the password you created, please try again"
             submitButton.disabled = true;
         
         }

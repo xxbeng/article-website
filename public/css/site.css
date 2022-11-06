@@ -49,6 +49,10 @@ img {
     object-fit: cover;
 }
 
+label {
+  text-align: initial;
+}
+
 .code {
     font-family: Consolas, monospace;
 }
@@ -149,29 +153,6 @@ body {
     color: white;
   }
 
-  /* .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  } */
-
-  /* .toggle-button {
-    position: absolute;
-    top: 0.75rem;
-    right:1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-  }
-
-  .toggle-button .bar{
-    height: 3px;
-    width:100%;
-    background-color: white;
-    border-radius: 10px; */
-  /* } */
   .topnav .icon {
     display: none;
     position: absolute;
@@ -238,7 +219,7 @@ body {
 
   .card-description {
     font-style: normal;
-    height: 50px;
+    height: 100px;
   }
 
   .card-footer {
