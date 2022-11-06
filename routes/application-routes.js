@@ -151,11 +151,11 @@ router.get("/article", async function (req, res) {
     const comments = await commentDao.retrievRootCommentByArticle(articleId);
 
     res.locals.comments = comments;
-
+    res.locals.title =" Single Article";
     res.render("single-article");
 });
 
-//render child comment
+//send all the child comments as a Json to client side
 router.get("/articlecomment", async function (req, res) {
     const articleId = req.query.articleId;
 
@@ -180,6 +180,7 @@ router.get("/articlecomment", async function (req, res) {
     }
 
     res.locals.comments = comments;
+    
     res.json(comments);
 });
 
@@ -200,8 +201,8 @@ router.post("/uploadImage", upload.single("file"), function(req, res) {
 
 //comment on article and redirect to article to see new comment added
 router.post("/comment", async function (req, res) {
-    
-    const user = res.locals.user;
+    try
+    {const user = res.locals.user;
 
     const articleId = req.query.articleId;
 
@@ -215,26 +216,43 @@ router.post("/comment", async function (req, res) {
     await commentDao.createComment(comment);
     res.setToastMessage("Comment has been posted!");
 
+    
     res.redirect(`./article?articleId=${articleId}`);
-
+    
+    }
+    
+    catch(err) {
+       res.setToastMessage("You need to login to be able to comment!");
+        res.redirect("/login"); 
+    }
+    
 });
 
+//when a comment to comment is created, add it into database and redirect to see comment added
 router.post("/commentToComment", async function (req, res) {
-    const user = res.locals.user;
-    const articleId = req.query.articleId;
+        try{
+        const user = res.locals.user;
+        const articleId = req.query.articleId;
     
 
-    const comment = {
+        const comment = {
         content: req.body.comment,
         articleId: parseInt(articleId),
         userId: user.id,
         username: user.username
-    };
+        };
 
-    const senderId = await commentDao.createComment(comment);
-    const receiverId = req.query.commentId;
-    await commentDao.createCommentToComment(receiverId,senderId);
-    res.redirect(`./article?articleId=${articleId}`);
+        const senderId = await commentDao.createComment(comment);
+        const receiverId = req.query.commentId;
+        await commentDao.createCommentToComment(receiverId,senderId);
+        
+        res.redirect(`./article?articleId=${articleId}`); 
+    }
+    catch(err) {
+        res.setToastMessage("You need to login to be able to comment!");
+         res.redirect("/login"); 
+     }
+    
 });
 
 
