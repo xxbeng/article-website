@@ -2,18 +2,22 @@
 
 {{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
 
+{{#if toastMessage}}
+  <p>{{toastMessage}}</p>
+{{/if}}
+
 <form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
   <div id="titlediv">
-    <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}">
+    <input type="text" name="title" id="tinyTitle" placeholder="Input title here" value="{{#if article}}{{article.title}}{{/if}}{{#if newArticle}}{{newArticle.title}}{{/if}}">
   </div>
 
   <div>
-    <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}</textarea>
+    <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}{{#if newArticle}}{{newArticle.content}}{{/if}}</textarea>
   </div>
   
  <div>
-    <button type="submit">Submit!</button>
+    <button type="submit" id="articleSubmit">Submit!</button>
     <a href="./myProfile"><input type="button" value="Cancel"></a>
   </div>
 </form>

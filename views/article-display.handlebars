@@ -1,5 +1,9 @@
 <div class="content-container">
 
+{{#if toastMessage}}
+  <p>{{toastMessage}}</p>
+{{/if}}
+
     <div>
         {{#if articles}}
             {{#each articles}}
