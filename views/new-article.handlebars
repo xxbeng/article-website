@@ -2,6 +2,10 @@
 
 {{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
 
+{{#if toastMessage}}
+  <p>{{toastMessage}}</p>
+{{/if}}
+
 <form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
     <div id="titlediv">
@@ -20,9 +24,10 @@
     </div>
       
     <div>
-        <button type="submit">Submit!</button>
+        <button type="submit" id="articleSubmit">Submit!</button>
         <a href="./myProfile"><input type="button" value="Cancel"></a>
     </div>
+
 </form>
 
 </div>
