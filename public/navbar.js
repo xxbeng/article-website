@@ -1,6 +1,5 @@
 window.addEventListener("load", function() {
 //navbar dropdpwn when responsive
-//navbar dropdpwn when responsive
 const icon = document.querySelector(".icon");
 const navbar = document.querySelector("#navbar");
 

@@ -1,5 +1,5 @@
 let articleIdGlobal;
-
+// client side js for nested comment
 window.addEventListener("load", function() { 
     async function fetchChildComment(articleId) {
         articleIdGlobal = articleId;
@@ -8,7 +8,7 @@ window.addEventListener("load", function() {
     
         return childCommentJson;
     }
-    
+    //adding new child comment table
     function displayChildComment (comment, level, element) {
         let newelement = document.createElement("div");
         newelement.innerHTML =  `
