@@ -1,6 +1,6 @@
 <div class="new-article-container">
 
-{{#if article}}{{else}}<div id="newArticleHeader"><h1>Create your new post!</h1></div>{{/if}}
+{{#if article}}{{else}}<div id="newArticleHeader"><h1 class="auth-title">Create your new Article!</h1></div>{{/if}}
 
 {{#if toastMessage}}
   <p>{{toastMessage}}</p>
@@ -8,26 +8,26 @@
 
 <form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
-    <div id="titlediv">
-        <label for="txt">Article Title:</label>
-        <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}">
-    </div>
+        <div class="flex-col mb" id="titlediv">
+            <label for="txt"></b>Article Title:</b></label>
+            <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}" required>
+        </div>
 
-    <div id="titlediv">
-        <label for="articleDescription">Article Description:</label>
-        <input type="text" name="articleDescription" id="articleDescription" value="{{#if article}}{{article.articleDescription}}{{/if}}">
-    </div>
+        <div class="flex-col mb" id="titlediv">
+            <label for="txt"></b>Article Description:</b></label>
+            <input type="text" name="articleDescription" id="tinyTitle" value="{{#if article}}{{article.articleDescription}}{{/if}}">
+        </div>
 
-    <div>
-        <label for="articleDescription">Article Content:</label>
-        <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}</textarea>
-    </div>
-      
-    <div>
-        <button type="submit" id="articleSubmit">Submit!</button>
-        <a href="./myProfile"><input type="button" value="Cancel"></a>
-    </div>
+        <div class="flex-col mb">
+            <label for="txt"></b>Article Content:</b></label>
+            <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}</textarea>
+        </div>
 
+        <div>
+            <button type="submit" id="articleSubmit">Submit!</button>
+            <a href="./myProfile"><input type="button" value="Cancel"></a>
+        </div>
+  
 </form>
 
 </div>
