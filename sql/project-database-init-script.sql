@@ -4,7 +4,7 @@
  * required.
  */
 
-/*drop table if exists test;
+drop table if exists test;
 drop table if exists cToC;
 drop table if exists comments;
 drop table if exists articles;
@@ -32,7 +32,8 @@ create table articles (
 	content text not null,
 	timestamp timestamp default CURRENT_TIMESTAMP,
 	userId INTEGER not null,
-	foreign key (userId) REFERENCES users (id)
+	foreign key (userId) REFERENCES users (id),
+	-- foreign key (username) REFERENCES users (username)
     ON UPDATE CASCADE -- to update articles when parent foreign key gets updated
     ON DELETE CASCADE -- to delete articles when parent foreign key gets deleted
 );
@@ -41,6 +42,7 @@ create table comments (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	content varchar(200) not null,
 	datenTime timestamp DEFAULT CURRENT_TIMESTAMP,
+	articleDescription varchar(500),
 	articleId integer NOT NULL, 
 	userId integer NOT NULL,
 	foreign key(articleId) REFERENCES articles (id),

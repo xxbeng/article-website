@@ -1,9 +1,14 @@
 <div>
 
-    <h1>Hello, {{user.username}}!</h1>
-    <p>This is your homepage!</p>
-    <p>Click <a href="./logout">here</a> to log out.</p>
-    <h1><a href="./newAccount">Register</a></h1>
+    <div class="name-container">
+        {{#if user}}
+        <h1>Hello, {{user.username}}!</h1>
+        {{else}}
+        <h1>Hello, stranger!</h1>
+        {{/if}}
+    </div>
+    
+
     
 </div>
 
@@ -16,7 +21,7 @@
                 <div class="card-body">
                     <h1 class="card-title"><a href="./article?articleId={{id}}">{{title}}</a></h1>
                     <p class="card-time">{{timestamp}}</p>
-                    <h2 class="card-content">{{{content}}}</h2>
+                    <h2 class="card-content">{{articleDescription}}</h2>
                 </div>
                 <div class="btn-box">
                     <a href="./article?articleId={{id}}">Read More</a>
@@ -24,7 +29,10 @@
             </div>
             {{/each}}
         {{else}}
-        <p>You have no articles! Go <a href="./newArticle">Create Article</a> now!</p>
+        <div class="name-container">
+            <h2>Have fun reading the articles!</h2>
+        </div>
+        
         {{/if}}
     </div>
     

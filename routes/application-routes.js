@@ -15,12 +15,23 @@ const commentDao = require("../modules/comments-dao.js");
 // Whenever we navigate to /, verify that we're authenticated. If we are, render the home view.
 router.get("/", async function (req, res) {
 
+    // res articles info to home page
     const articles = await articlesDao.retrieveAllArticles();
     res.locals.articles = articles;
     res.locals.homePage = true;
+
+    // // res username of articles 
+    // const articleCard = res.locals.articles;
+    // const articleUsername = await articlesDao.getUsernameByArticleUserId(articleCard.userId);
+    // res.locals.username = articleUsername;
+
+    // console.log(articleCard);
+    // console.log(articleCard.userId);
+    // console.log(articleUsername);
+
     res.locals.title = 'Home';
 
-    res.render("home"); //home needs modification - article-display as reference maybe?
+    res.render("home"); 
 });
 
 
@@ -56,7 +67,8 @@ router.post("/newArticle", async function (req, res) {
     const article = {
         title: req.body.title,
         content: req.body.content,
-        userId: user.id
+        userId: user.id,
+        articleDescription:req.body.articleDescription,
     };
 
     await articlesDao.createArticle(article);
@@ -86,7 +98,8 @@ router.post("/edit", async function (req, res) {
     const article = {
         id: retrievedArticle.id,
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        articleDescription:req.body.articleDescription,
     };
 
     await articlesDao.updateArticle(article);
