@@ -9,17 +9,17 @@
 <form action={{#if article}}"./edit?articleId={{article.id}}"{{else}}"./newArticle"{{/if}} method="POST">
 
     <div id="titlediv">
-        <label for="txt">Article Title:</label>
+        <p id="articleLabels"><label for="txt">Article Title:</label></p>
         <input type="text" name="title" id="tinyTitle" value="{{#if article}}{{article.title}}{{/if}}">
     </div>
 
     <div id="titlediv">
-        <label for="articleDescription">Article Description:</label>
-        <input type="text" name="articleDescription" id="articleDescription" value="{{#if article}}{{article.articleDescription}}{{/if}}">
+        <p id="articleLabels"><label for="articleDescription">Article Description:</label></p>
+        <input type="text" name="articleDescription" id="tinyTitle" value="{{#if article}}{{article.articleDescription}}{{/if}}">
     </div>
 
     <div>
-        <label for="articleDescription">Article Content:</label>
+        <p id="articleLabels"><label for="articleDescription">Article Content:</label></p>
         <textarea name="content" id="tinyContent">{{#if article}}{{article.content}}{{/if}}</textarea>
     </div>
       
