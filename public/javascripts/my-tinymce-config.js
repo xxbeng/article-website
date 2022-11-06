@@ -21,6 +21,7 @@
     toolbar: 'preview undo redo | styleselect | fontfamily forecolor backcolor align bold italic | link image',
     placeholder: "Input text here",
     images_upload_url: "uploadImage",
+    content_style: 'img { max-width: 700px; height: auto; }'
   };
 
   const tinyCommentConfig = {

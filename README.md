@@ -34,11 +34,12 @@ The extra feature implemented in this is the comment feature when an article is 
 ## Instructions of database file (project-database.db file) 
 When you open SQLite, click Open Database and find the project-database.db file in the project-group-charcoal-caterpillars folder. Alternatively, if it is not available, click New Database and create a database file in the project-group-charcoal-caterpillars folder and name it as project-database.db
 
-## Prior to running webapp, run and instal below
+## Prior to running webapp, run and install below
 
 run npm install
 run sql data - named: sql/project-database-init-script.sql
 run npm start
+
 
 ## Anything special to run your webapp, other thanrunning npm start?
 Nothing else is required besides the above
@@ -51,3 +52,4 @@ Nothing else is required besides the above
 
 ## Any other instructions / comments you wish to make to your markers
 Have fun with our well functioned webapp!
+
